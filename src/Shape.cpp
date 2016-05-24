@@ -2,16 +2,16 @@
 
 Shape::Shape() {}
 
-Shape::Shape( Coord2D centroid ) : m_centroid( centroid ) {}
+Shape::Shape( const Coord2D& centroid ) : m_centroid( centroid ) {}
 
 Shape::~Shape() {}
 
-void Shape::setCentroid( Coord2D newCentroid )
+void Shape::setCentroid( const Coord2D& newCentroid )
 {
 	m_centroid = newCentroid;
 }
 
-void Shape::moveCentroid( Coord2D offset )
+void Shape::moveCentroid( const Coord2D& offset )
 {
 	m_centroid += offset;
 }
