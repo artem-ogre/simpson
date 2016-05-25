@@ -5,14 +5,14 @@
 #include <assert.h>
 #include <exception>
 
-const std::exception zeroSidesException( "Number of sides for regular polygon should be more than zero" );
+const std::exception notEnoughSidesException( "Number of sides for regular polygon should be at least 3" );
 
 RegularPolygon::RegularPolygon( const Coord2D& centroid, const shape_t& radius, const unsigned long& numberOfSides )
 	: Circle( centroid, radius ),
 	m_nSides( numberOfSides )
 {
-	if ( !(m_nSides > 0) )
-		throw zeroSidesException;
+	if ( m_nSides < 3 )
+		throw notEnoughSidesException;
 }
 
 shape_t RegularPolygon::getArea() const
@@ -20,14 +20,12 @@ shape_t RegularPolygon::getArea() const
 	return 0.5 * m_nSides * (m_radius*m_radius) * std::sin( 2 * M_PI / m_nSides );
 }
 
-const unsigned long& RegularPolygon::getNSides() const
+unsigned long RegularPolygon::getNSides() const
 {
 	return m_nSides;
 }
 
-void RegularPolygon::setNSides( const unsigned long& nSides )
+shape_t RegularPolygon::getSideLength() const
 {
-	if ( !(nSides > 0) )
-		throw zeroSidesException;
-	m_nSides = nSides;
+	return 2 * m_radius * sin( M_PI / m_nSides );
 }
