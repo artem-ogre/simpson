@@ -5,5 +5,6 @@
 class Square : public RegularPolygon
 {
 public:
-	Square( const Coord2D& centroid, const shape_t& radius );
+	Square( const ShapePos2D& centroid, const shape_t& radius );
+	virtual ~Square() override {};
 };

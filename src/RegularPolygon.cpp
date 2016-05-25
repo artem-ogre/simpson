@@ -7,13 +7,15 @@
 
 const std::exception notEnoughSidesException( "Number of sides for regular polygon should be at least 3" );
 
-RegularPolygon::RegularPolygon( const Coord2D& centroid, const shape_t& radius, const unsigned long& numberOfSides )
+RegularPolygon::RegularPolygon( const ShapePos2D& centroid, const shape_t& radius, const unsigned long& numberOfSides )
 	: Circle( centroid, radius ),
 	m_nSides( numberOfSides )
 {
 	if ( m_nSides < 3 )
 		throw notEnoughSidesException;
 }
+
+RegularPolygon::~RegularPolygon() {}
 
 shape_t RegularPolygon::getArea() const
 {

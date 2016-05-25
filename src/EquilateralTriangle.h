@@ -5,5 +5,6 @@
 class EquilateralTriangle : public RegularPolygon
 {
 public:
-	EquilateralTriangle(const Coord2D& centroid, const shape_t& radius);
+	EquilateralTriangle( const ShapePos2D& centroid, const shape_t& radius );
+	virtual ~EquilateralTriangle() override {};
 };

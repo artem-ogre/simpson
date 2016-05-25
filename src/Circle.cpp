@@ -6,12 +6,11 @@
 
 const std::exception negativeRadius( "The radius should be non-negative" );
 
-Circle::Circle( const Coord2D& centroid, const shape_t& radius ) : Shape( centroid ), m_radius( radius ) 
+Circle::Circle( const ShapePos2D& centroid, const shape_t& radius ) : Shape( centroid )
 {
-	if ( m_radius < shape_t( 0 ) )
-		throw negativeRadius;
+	setRadius( radius );
 }
-Circle::Circle() : Circle( Coord2D(), 0 ) {}
+Circle::Circle() : Circle( ShapePos2D(), 0 ) {}
 Circle::~Circle() {}
 
 shape_t Circle::getArea() const

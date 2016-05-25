@@ -1,21 +1,22 @@
 #pragma once
 
-#include "ShapeHelpers.h"
+#include "Position2D.h"
+
+typedef double shape_t;
+typedef Position2D<shape_t> ShapePos2D;
 
 class Shape
 {
 public:
 	Shape();
-	Shape( const Coord2D& centroid );
+	Shape( const ShapePos2D& centroid );
 	virtual ~Shape();
 
-	const Coord2D& getCentroid() const;
-	void setCentroid( const Coord2D& newCentroid );
-
-	void moveCentroid( const Coord2D& offset );
-	
+	const ShapePos2D& getCentroid() const;
+	void setCentroid( const ShapePos2D& newCentroid );
+	void moveCentroid( const ShapePos2D& offset );	
 	virtual shape_t getArea() const = 0;
 	
 protected:
-	Coord2D m_centroid;
+	ShapePos2D m_centroid;
 };
