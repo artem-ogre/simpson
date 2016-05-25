@@ -1,8 +1,11 @@
 #include "Shape.h"
 
-Shape::Shape() {}
+Shape::Shape()
+{}
 
-Shape::Shape( const ShapePos2D& centroid ) : m_centroid( centroid ) {}
+Shape::Shape( const ShapePos2D& centroid ) 
+	: m_centroid( centroid ) 
+{}
 
 Shape::~Shape() {}
 

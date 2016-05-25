@@ -3,9 +3,12 @@
 
 const std::exception negativeDimension( "The rectangle dimensions should be non-negative" );
 
-Rectangle::Rectangle( const ShapePos2D& centroid, const shape_t& width, const shape_t& height ) : Shape( centroid ), m_width( width ), m_height( height )
+Rectangle::Rectangle( const ShapePos2D& centroid, const shape_t& width, const shape_t& height ) 
+	: Shape( centroid ), 
+	m_width( width ), 
+	m_height( height )
 {
-	registerClass( "Rectangle" );
+	registerClass();
 	setWidth( width );
 	setHeight( height );
 }
@@ -58,4 +61,9 @@ void Rectangle::readState( std::istream& inStream )
 IStreamable* Rectangle::createDummy() const
 {
 	return new Rectangle;
+}
+
+std::string Rectangle::getClassName() const
+{
+	return "Rectangle";
 }

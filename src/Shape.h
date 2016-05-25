@@ -10,7 +10,7 @@ class Shape : public IStreamable
 {
 public:
 	Shape();
-	Shape( const ShapePos2D& centroid );
+	Shape(const ShapePos2D& centroid );
 	virtual ~Shape();
 
 	const ShapePos2D& getCentroid() const;

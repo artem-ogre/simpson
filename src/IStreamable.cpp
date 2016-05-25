@@ -6,11 +6,12 @@ const std::exception callingPureVirtual( "Calling a pure virtual method of an ab
 
 static std::map<std::string, IStreamable*> classIdToClass;
 
-IStreamable::IStreamable(){}
+IStreamable::IStreamable()
+{}
 
-void IStreamable::registerClass( const std::string& classId )
+void IStreamable::registerClass()
 {
-	m_classId = classId;
+	m_classId = getClassName();
 	auto search = classIdToClass.find( m_classId );
 	if ( search == classIdToClass.end() )
 	{
@@ -37,6 +38,11 @@ IStreamable* IStreamable::unserialize( std::istream& inStream ) const
 }
 
 IStreamable* IStreamable::createDummy() const
+{
+	throw callingPureVirtual;
+}
+
+std::string IStreamable::getClassName() const
 {
 	throw callingPureVirtual;
 }

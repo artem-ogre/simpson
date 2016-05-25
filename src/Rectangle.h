@@ -19,6 +19,7 @@ public:
 	virtual void serialize( std::ostream& outStream ) const override;
 	virtual void readState( std::istream& inStream ) override;
 	virtual IStreamable* createDummy() const override;
+	virtual std::string getClassName() const override;
 
 protected:
 	shape_t m_width;
