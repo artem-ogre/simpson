@@ -1,7 +1,8 @@
-#include "RegularPolygon.h"
-
 #define _USE_MATH_DEFINES
 #include <cmath>
+
+#include "RegularPolygon.h"
+
 #include <assert.h>
 #include <exception>
 

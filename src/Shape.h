@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Position2D.h"
+#include "IStreamable.h"
 
 typedef double shape_t;
 typedef Position2D<shape_t> ShapePos2D;
 
-class Shape
+class Shape : public IStreamable
 {
 public:
 	Shape();
@@ -16,7 +17,9 @@ public:
 	void setCentroid( const ShapePos2D& newCentroid );
 	void moveCentroid( const ShapePos2D& offset );	
 	virtual shape_t getArea() const = 0;
-	
+
+	//IStreamable
+	virtual void serialize( std::ostream& outStream ) const override;
 protected:
 	ShapePos2D m_centroid;
 };
