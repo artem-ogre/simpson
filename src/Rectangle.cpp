@@ -49,12 +49,10 @@ void Rectangle::serialize( std::ostream& outStream ) const
 	outStream << " " << m_width << " " << m_height;
 }
 
-IStreamable* Rectangle::create( std::istream& inStream ) const
+void Rectangle::readState( std::istream& inStream )
 {
-	shape_t posx, posy;
-	shape_t width, height;
-	inStream >> posx >> posy >> width >> height;
-	return new Rectangle( ShapePos2D( posx, posy ), width, height );
+	Shape::readState( inStream );
+	inStream >> m_width >> m_height;
 }
 
 IStreamable* Rectangle::createDummy() const

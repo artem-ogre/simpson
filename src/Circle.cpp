@@ -28,12 +28,10 @@ void Circle::serialize( std::ostream& outStream ) const
 	outStream << " " << m_radius;
 }
 
-IStreamable* Circle::create( std::istream& inStream ) const
+void Circle::readState( std::istream& inStream )
 {
-	shape_t posx, posy;
-	shape_t radius;
-	inStream >> posx >> posy >>radius;
-	return new Circle( ShapePos2D( posx, posy ), radius );
+	Shape::readState( inStream );
+	inStream >> m_radius;
 }
 
 IStreamable* Circle::createDummy() const

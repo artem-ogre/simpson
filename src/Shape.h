@@ -20,6 +20,8 @@ public:
 
 	//IStreamable
 	virtual void serialize( std::ostream& outStream ) const override;
+	virtual void readState( std::istream& inStream ) override;
+
 protected:
 	ShapePos2D m_centroid;
 };

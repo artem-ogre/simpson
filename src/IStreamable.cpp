@@ -31,7 +31,9 @@ IStreamable* IStreamable::unserialize( std::istream& inStream ) const
 	auto search = classIdToClass.find( classId );
 	if ( search == classIdToClass.end() )
 		throw notRegistered;
-	return search->second->create( inStream );
+	IStreamable* result = search->second->createDummy();
+	result->readState( inStream );
+	return result;
 }
 
 IStreamable* IStreamable::createDummy() const
