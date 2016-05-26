@@ -9,10 +9,11 @@
 
 const std::exception negativeRadius( "The radius should be non-negative" );
 
+REGISTER_TYPE( Circle )
+
 Circle::Circle( const ShapePos2D& centroid, const shape_t& radius ) 
 	: Shape( centroid )
 {
-	registerClass();
 	setRadius( radius );
 }
 Circle::Circle() : Circle( ShapePos2D(), 0 ) {}
@@ -35,14 +36,9 @@ void Circle::readState( std::istream& inStream )
 	inStream >> m_radius;
 }
 
-IStreamable* Circle::createDummy() const
+IStreamable* Circle::create() const
 {
 	return new Circle;
-}
-
-std::string Circle::getClassName() const
-{
-	return "Circle";
 }
 
 const shape_t& Circle::getRadius()

@@ -4,40 +4,34 @@
 const std::exception notRegistered( "The class identificator is not registered in the map" );
 const std::exception callingPureVirtual( "Calling a pure virtual method of an abstract class ISerializable" );
 
-static std::map<std::string, IStreamable*> classIdToClass;
+std::map<std::string, IStreamable*> IStreamable::m_classIdToClass;
 
 IStreamable::IStreamable()
 {}
 
-void IStreamable::registerClass()
+void IStreamable::registerClass( const std::string& name, IStreamableFactory* factory )
 {
-	m_classId = getClassName();
-	auto search = classIdToClass.find( m_classId );
-	if ( search == classIdToClass.end() )
-	{
-		classIdToClass[m_classId] = nullptr; //TODO
-		classIdToClass[m_classId] = this->createDummy();
-	}
+	m_classIdToClass[name] = factory->create();
 }
 
 void IStreamable::serialize( std::ostream& outStream ) const
 {
-	outStream << " " << m_classId;
+	outStream << " " << getClassName();
 }
 
 IStreamable* IStreamable::unserialize( std::istream& inStream ) const
 {
 	std::string classId;
 	inStream >> classId;
-	auto search = classIdToClass.find( classId );
-	if ( search == classIdToClass.end() )
+	auto search = m_classIdToClass.find( classId );
+	if ( search == m_classIdToClass.end() )
 		throw notRegistered;
-	IStreamable* result = search->second->createDummy();
+	IStreamable* result = search->second->create();
 	result->readState( inStream );
 	return result;
 }
 
-IStreamable* IStreamable::createDummy() const
+IStreamable* IStreamable::create() const
 {
 	throw callingPureVirtual;
 }

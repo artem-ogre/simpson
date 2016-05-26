@@ -16,7 +16,7 @@ public:
 	//ISerializable
 	virtual void serialize( std::ostream& outStream ) const override;
 	virtual void readState( std::istream& inStream ) override;
-	virtual IStreamable* createDummy() const override;
+	virtual IStreamable* create() const override;
 	virtual std::string getClassName() const override;
 
 protected:
