@@ -1,6 +1,7 @@
-#include<iostream>
-#include<sstream>
+#include <iostream>
+#include <sstream>
 #include <type_traits>
+#include <vector>
 
 #include "Shape.h"
 #include "Circle.h"
@@ -27,17 +28,23 @@ int main( int argc, char *argv[] )
 		//Rectangle rec( ShapePos2D( 0.0, 0.0 ), -1, 1 );
 		Rectangle rec( ShapePos2D( 0.0, 0.0 ), 1, 1 );
 
-		Shape * shapes[2];
-		shapes[0] = &c;
-		shapes[1] = &rec;
+		std::vector<IStreamable*> shapes;
+		shapes.push_back(&c);
+		shapes.push_back(&rec);
+		
+		std::cout << "Before:\n";
+		for ( auto s : shapes )
+			std::cout << *s;
+		
 		std::stringstream buffer;
-		for ( size_t i = 0; i < 2; ++i )
-		{
-			shapes[i]->serialize( buffer );
-			shapes[i]->serialize( std::cout );
-		}
-		for ( size_t i = 0; i < 2; ++i )
-			shapes[i]->unserialize( buffer );
+		for ( auto s : shapes )
+			buffer << *s;
+		for ( auto s : shapes )
+			buffer >> *s;
+
+		std::cout << "\nAfter:\n";
+		for ( auto s : shapes )
+			std::cout << *s;
 	}
 	catch ( std::exception &e ) 
 	{

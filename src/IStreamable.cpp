@@ -2,10 +2,10 @@
 #include <exception>
 
 const std::exception notRegistered( "The class identificator is not registered in the map" );
-const std::exception callingPureVirtual( "Calling a pure virtual method of an abstract class ISerializable" );
+const std::exception alreadyRegistered( "The class identificator is already registered in the map" );
 
 typedef std::map<std::string, IStreamableFactory*> FactoryMap;
-FactoryMap& factoryMap() //avoiding initialization order fiasco
+FactoryMap& factoryMap()//avoiding an initialization order fiasco
 {
 	static FactoryMap factories;
 	return factories;
@@ -14,8 +14,11 @@ FactoryMap& factoryMap() //avoiding initialization order fiasco
 IStreamable::IStreamable()
 {}
 
-void IStreamable::registerClass( const std::string& name, IStreamableFactory* factory )
+void IStreamable::registerType( const std::string& name, IStreamableFactory* factory )
 {
+	auto search = factoryMap().find( name );
+	if ( search != factoryMap().end() )
+		throw alreadyRegistered;
 	factoryMap()[name] = factory;
 }
 
@@ -36,7 +39,14 @@ IStreamable* IStreamable::unserialize( std::istream& inStream ) const
 	return result;
 }
 
-std::string IStreamable::getClassName() const
+std::ostream& operator<<( std::ostream& outStream, const IStreamable& obj )
 {
-	throw callingPureVirtual;
+	obj.serialize( outStream );
+	return outStream;
+}
+
+std::istream& operator>>( std::istream& inStream, const IStreamable& obj )
+{
+	obj.unserialize( inStream );
+	return inStream;
 }
