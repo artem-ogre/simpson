@@ -7,6 +7,8 @@
 #include <string>
 #include <map>
 
+class IStreamableFactory;
+
 class IStreamable
 {
 public:
@@ -18,7 +20,6 @@ protected:
 	virtual IStreamable* create() const = 0;//Virtual constructor idiom //TODO: use a smart pointer
 	virtual void readState( std::istream& inStream ) = 0;
 	virtual std::string getClassName() const = 0;
-
 protected:
 	static std::map<std::string, IStreamable*> m_classIdToClass;
 };

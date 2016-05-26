@@ -1,6 +1,7 @@
 #include "IStreamable.h"
 #include <exception>
 
+const std::exception alreadyRegistered( "The class identificator is already registered in the map" );
 const std::exception notRegistered( "The class identificator is not registered in the map" );
 const std::exception callingPureVirtual( "Calling a pure virtual method of an abstract class ISerializable" );
 
@@ -11,6 +12,9 @@ IStreamable::IStreamable()
 
 void IStreamable::registerClass( const std::string& name, IStreamableFactory* factory )
 {
+	auto search = m_classIdToClass.find( name );
+	if ( search != m_classIdToClass.end() )
+		throw alreadyRegistered;
 	m_classIdToClass[name] = factory->create();
 }
 
