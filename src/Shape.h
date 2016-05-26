@@ -6,6 +6,7 @@
 typedef double shape_t;
 typedef Position2D<shape_t> ShapePos2D;
 
+//!  Interface for the shape type. Supports serialization via IStreamable
 class Shape : public IStreamable
 {
 public:
@@ -19,7 +20,6 @@ public:
 	virtual shape_t getArea() const = 0;
 
 	//IStreamable
-	//virtual void serialize( std::ostream& outStream ) const override;
 	virtual void writeState( std::ostream& outStream ) const override;
 	virtual void readState( std::istream& inStream ) override;
 

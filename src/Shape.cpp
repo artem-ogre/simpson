@@ -1,5 +1,6 @@
 #include "Shape.h"
 
+
 Shape::Shape()
 {}
 
@@ -21,7 +22,6 @@ void Shape::moveCentroid( const ShapePos2D& offset )
 
 void Shape::writeState( std::ostream& outStream ) const
 {
-	//IStreamable::writeState( outStream );
 	outStream << " " << m_centroid.x() << " " << m_centroid.y();
 }
 

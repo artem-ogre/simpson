@@ -2,6 +2,10 @@
 #include <sstream>
 #include <type_traits>
 #include <vector>
+#include <fstream>
+#include <string>
+#include <stdlib.h>
+#include <time.h> 
 
 #include "Shape.h"
 #include "Circle.h"
@@ -9,11 +13,6 @@
 #include "EquilateralTriangle.h"
 #include "Square.h"
 #include "Rectangle.h"
-#include "IStreamable.h"
-#include <fstream>
-#include <string>
-#include <stdlib.h>
-#include <time.h> 
 
 static_assert(std::is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
 static_assert(std::is_floating_point<shape_t>::value, "shape_t  is not floating point");
@@ -78,8 +77,6 @@ int main( int argc, char *argv[] )
 		while( !inFile.eof() )
 			shapes.push_back( IStreamable::unserialize( inFile ) );
 		inFile.close();
-
-		//doing something...
 
 		// saving shapes
 		std::ofstream outFile( argv[2] );
