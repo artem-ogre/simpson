@@ -10,9 +10,9 @@ Square::Square()
 	: Square( ShapePos2D( 0, 0 ), 1 )
 {}
 
-void Square::serialize( std::ostream& outStream ) const
+void Square::writeState( std::ostream& outStream ) const
 {
-	RegularPolygon::serialize( outStream );
+	RegularPolygon::writeState( outStream );
 }
 
 void Square::readState( std::istream& inStream )

@@ -47,9 +47,9 @@ const shape_t& Rectangle::getHeight() const
 	return m_height;
 }
 
-void Rectangle::serialize( std::ostream& outStream ) const
+void Rectangle::writeState( std::ostream& outStream ) const
 {
-	Shape::serialize( outStream );
+	Shape::writeState( outStream );
 	outStream << " " << m_width << " " << m_height;
 }
 

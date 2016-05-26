@@ -24,9 +24,9 @@ shape_t Circle::getArea() const
 	return M_PI * m_radius * m_radius;
 }
 
-void Circle::serialize( std::ostream& outStream ) const
+void Circle::writeState( std::ostream& outStream ) const
 {
-	Shape::serialize( outStream );
+	Shape::writeState( outStream );
 	outStream << " " << m_radius;
 }
 

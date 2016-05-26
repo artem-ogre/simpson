@@ -3,7 +3,7 @@
 #define SERIALIZABLE_TYPE												\
 public:																	\
 	virtual std::string getClassName() const override;					\
-	virtual void serialize( std::ostream& outStream ) const override;	\
+	virtual void writeState( std::ostream& outStream ) const override;	\
 	virtual void readState( std::istream& inStream ) override;			\
 private:
 

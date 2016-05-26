@@ -22,12 +22,13 @@ void IStreamable::registerType( const std::string& name, IStreamableFactory* fac
 	factoryMap()[name] = factory;
 }
 
-void IStreamable::serialize( std::ostream& outStream ) const
+void IStreamable::serialize( std::ostream& outStream, const IStreamable* obj )
 {
-	outStream << " " << getClassName();
+	outStream << " " << obj->getClassName();
+	obj->writeState( outStream );
 }
 
-IStreamable* IStreamable::unserialize( std::istream& inStream ) const
+IStreamable* IStreamable::unserialize( std::istream& inStream )
 {
 	std::string classId;
 	inStream >> classId;
@@ -41,12 +42,12 @@ IStreamable* IStreamable::unserialize( std::istream& inStream ) const
 
 std::ostream& operator<<( std::ostream& outStream, const IStreamable& obj )
 {
-	obj.serialize( outStream );
+	IStreamable::serialize( outStream, &obj );
 	return outStream;
 }
 
 std::istream& operator>>( std::istream& inStream, const IStreamable& obj )
 {
-	obj.unserialize( inStream );
+	IStreamable::unserialize( inStream );
 	return inStream;
 }

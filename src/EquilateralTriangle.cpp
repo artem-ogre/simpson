@@ -9,9 +9,9 @@ EquilateralTriangle::EquilateralTriangle()
 	: EquilateralTriangle( ShapePos2D( 0, 0 ), 1 )
 {}
 
-void EquilateralTriangle::serialize( std::ostream& outStream ) const
+void EquilateralTriangle::writeState( std::ostream& outStream ) const
 {
-	RegularPolygon::serialize( outStream );
+	RegularPolygon::writeState( outStream );
 }
 
 void EquilateralTriangle::readState( std::istream& inStream )

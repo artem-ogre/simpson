@@ -19,9 +19,9 @@ void Shape::moveCentroid( const ShapePos2D& offset )
 	m_centroid += offset;
 }
 
-void Shape::serialize( std::ostream& outStream ) const
+void Shape::writeState( std::ostream& outStream ) const
 {
-	IStreamable::serialize( outStream );
+	//IStreamable::writeState( outStream );
 	outStream << " " << m_centroid.x() << " " << m_centroid.y();
 }
 
