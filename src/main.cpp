@@ -18,7 +18,7 @@ int main( int argc, char *argv[] )
 	try
 	{
 		//Shape s;
-		Circle c;
+		Circle c( ShapePos2D( 1.2, 2.3 ), 123.0 );
 		//RegularPolygon rp( Coord2D( 0.0, 0.0 ), 1.0, 0 ); //testing zero sides
 		RegularPolygon rp( ShapePos2D( 0.0, 0.0 ), 1.0, 3 );
 		//rp.setNSides( 0 ); //testing zero sides

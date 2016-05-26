@@ -58,8 +58,3 @@ void Rectangle::readState( std::istream& inStream )
 	Shape::readState( inStream );
 	inStream >> m_width >> m_height;
 }
-
-IStreamable* Rectangle::create() const
-{
-	return new Rectangle;
-}

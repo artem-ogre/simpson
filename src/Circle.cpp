@@ -36,11 +36,6 @@ void Circle::readState( std::istream& inStream )
 	inStream >> m_radius;
 }
 
-IStreamable* Circle::create() const
-{
-	return new Circle;
-}
-
 const shape_t& Circle::getRadius()
 {
 	return m_radius;
