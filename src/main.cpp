@@ -23,14 +23,15 @@ int main( int argc, char *argv[] )
 		//RegularPolygon rp( Coord2D( 0.0, 0.0 ), 1.0, 0 ); //testing zero sides
 		RegularPolygon rp( ShapePos2D( 0.0, 0.0 ), 1.0, 3 );
 		//rp.setNSides( 0 ); //testing zero sides
-		EquilateralTriangle t( ShapePos2D( 0.0, 0.0 ), 1.0 );
-		Square sq( ShapePos2D( 0.0, 0.0 ), 1.0 );
+		EquilateralTriangle t( ShapePos2D( 0.4, 0.5 ), 2.6 );
+		Square sq( ShapePos2D( 0.1, 0.2 ), 1.3 );
 		//Rectangle rec( ShapePos2D( 0.0, 0.0 ), -1, 1 );
 		Rectangle rec( ShapePos2D( 0.0, 0.0 ), 1, 1 );
-
 		std::vector<IStreamable*> shapes;
 		shapes.push_back(&c);
 		shapes.push_back(&rec);
+		shapes.push_back( &t );
+		shapes.push_back( &sq );
 		
 		std::cout << "Before:\n";
 		for ( auto s : shapes )

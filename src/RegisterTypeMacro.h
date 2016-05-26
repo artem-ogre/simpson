@@ -1,5 +1,12 @@
 #pragma once
 
+#define SERIALIZABLE_TYPE												\
+public:																	\
+	virtual std::string getClassName() const override;					\
+	virtual void serialize( std::ostream& outStream ) const override;	\
+	virtual void readState( std::istream& inStream ) override;			\
+private:
+
 #define REGISTER_TYPE(class_name)								\
 class class_name##Factory : public IStreamableFactory			\
 {																\
