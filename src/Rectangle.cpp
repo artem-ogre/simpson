@@ -6,9 +6,7 @@ const std::exception negativeDimension( "The rectangle dimensions should be non-
 REGISTER_TYPE( Rectangle )
 
 Rectangle::Rectangle( const ShapePos2D& centroid, const shape_t& width, const shape_t& height ) 
-	: Shape( centroid ), 
-	m_width( width ), 
-	m_height( height )
+	: Shape( centroid )
 {
 	setWidth( width );
 	setHeight( height );

@@ -17,52 +17,52 @@
 static_assert(std::is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
 static_assert(std::is_floating_point<shape_t>::value, "shape_t  is not floating point");
 
+void writeToFile( std::vector<IStreamable*> shapes, const char* fileName )
+{
+	std::ofstream outFile( fileName );
+	if ( !outFile.is_open() )
+	{
+		std::cout << "can't open the output file\n";
+		return;
+	}
+	for ( size_t i = 0; i < shapes.size(); ++i )
+	{
+		if ( i > 0 )
+			outFile << "\n";
+		outFile << *shapes[i];
+		delete shapes[i];
+	}
+	outFile.close();
+}
+
 int main( int argc, char *argv[] )
 {
 	if( argc == 2 )
 	{
+		// generating N random shapes and writing them to a file
 		std::vector<IStreamable*> shapes;
 		srand( (unsigned int)time( NULL ) );
 		for(int i = 0; i < 100; i++)
 		{
-			switch( rand() % 5 )
+			switch( rand() % 4 )
 			{
 			case 0:
-			{
-				Circle* c = new Circle( ShapePos2D( rand(), rand() ), rand() );
-				shapes.push_back( c );
+				shapes.push_back( new Circle( ShapePos2D( rand(), rand() ), rand() ) );
 				break;
-			}
 			case 1:
-			{
-				RegularPolygon* rp = new RegularPolygon( ShapePos2D( rand(), rand() ), rand(), rand() );
-				shapes.push_back( rp );
+				shapes.push_back( new RegularPolygon( ShapePos2D( rand(), rand() ), rand(), rand() ) );
 				break;
-			}
 			case 2:
-			{
-				EquilateralTriangle* t = new EquilateralTriangle( ShapePos2D( rand(), rand() ), rand() );
-				shapes.push_back( t );
+				shapes.push_back( new EquilateralTriangle( ShapePos2D( rand(), rand() ), rand() ) );
 				break;
-			}
 			case 3:
-			{
-				Square* c = new Square( ShapePos2D( rand(), rand() ), rand() );
-				shapes.push_back( c );
+				shapes.push_back( new Square( ShapePos2D( rand(), rand() ), rand() ) );
 				break;
-			}
 			}
 		}
 		
-		std::ofstream outFile( argv[1] );
-		for ( size_t i = 0; i < shapes.size(); ++i )
-		{
-			if ( i > 0 )
-				outFile << "\n";
-			outFile << *shapes[i];
-			delete shapes[i];
-		}
-		outFile.close();
+		writeToFile( shapes, argv[1] );;
+
 	}
 	else if( argc == 3 )
 	{
@@ -79,20 +79,13 @@ int main( int argc, char *argv[] )
 		inFile.close();
 
 		// saving shapes
-		std::ofstream outFile( argv[2] );
-		if ( !outFile.is_open() )
-		{
-			std::cout << "can't open the output file\n";
-			return 1;
-		}
-		for ( size_t i = 0; i < shapes.size(); ++i )
-		{
-			if ( i > 0 )
-				outFile << "\n";
-			outFile << *shapes[i];
-			delete shapes[i];
-		}
-		outFile.close();
+		writeToFile( shapes, argv[2] );;
+	}
+	else
+	{
+		std::cout << "Usage:\n";
+		std::cout << "Scenario 1\n[outputFile] - to generate 100 random shapes and write them to the file\n";
+		std::cout << "Scenario 2\n[inputFile] [outputFile] - to load figures from the input file and save them to the output file\n";
 	}
 
 	return 0;
