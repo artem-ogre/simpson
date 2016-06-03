@@ -14,6 +14,9 @@ FactoryMap& factoryMap()//avoiding an initialization order fiasco
 IStreamable::IStreamable()
 {}
 
+IStreamable::~IStreamable()
+{}
+
 void IStreamable::registerType( const std::string& name, IStreamableFactory* factory )
 {
 	auto search = factoryMap().find( name );

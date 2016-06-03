@@ -20,6 +20,7 @@ class IStreamable
 {
 public:
 	IStreamable();
+	virtual ~IStreamable();
 	static void serialize( std::ostream& outStream, const IStreamable* obj );
 	static IStreamable* unserialize( std::istream& inStream ); //Caller is responsible for the IStreamable deallocation
 	static void registerType( const std::string& name, IStreamableFactory* factory );
