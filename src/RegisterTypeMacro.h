@@ -21,11 +21,11 @@ class class_name##Factory : public IStreamableFactory			\
 public:															\
 	class_name##Factory()										\
 	{															\
-		IStreamable::registerType(#class_name, this);			\
+		Streamable::registerType(#class_name, this);			\
 	}															\
-	virtual IStreamable *create() const override				\
+	virtual std::unique_ptr<Streamable> create() const override	\
 	{															\
-		return new class_name();								\
+		return std::unique_ptr<Streamable> (new class_name);	\
 	}															\
 };																\
 static class_name##Factory global_##class_name##Factory;		\

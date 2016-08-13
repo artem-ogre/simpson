@@ -16,8 +16,6 @@ RegularPolygon::RegularPolygon( const ShapePos2D& centroid, const shape_t& radiu
 		throw notEnoughSidesException;
 }
 
-RegularPolygon::~RegularPolygon() {}
-
 shape_t RegularPolygon::getArea() const
 {
 	return 0.5 * m_nSides * (m_radius*m_radius) * std::sin( 2 * M_PI / m_nSides );

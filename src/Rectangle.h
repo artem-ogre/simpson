@@ -8,7 +8,6 @@ class Rectangle : public Shape
 public:
 	Rectangle();
 	Rectangle( const ShapePos2D& centroid, const shape_t& width, const shape_t& height );
-	virtual ~Rectangle() override;
 
 	virtual shape_t getArea() const override;
 	void setWidth( const shape_t& width );

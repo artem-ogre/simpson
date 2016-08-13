@@ -17,7 +17,10 @@
 static_assert(std::is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
 static_assert(std::is_floating_point<shape_t>::value, "shape_t  is not floating point");
 
-void writeToFile( std::vector<IStreamable*> shapes, const char* fileName )
+using StreamablePtr = std::unique_ptr<Streamable>;
+using StreamablePtrs = std::vector<StreamablePtr>;
+
+void writeToFile( const StreamablePtrs &shapes, const char* fileName )
 {
 	std::ofstream outFile( fileName );
 	if ( !outFile.is_open() )
@@ -30,7 +33,6 @@ void writeToFile( std::vector<IStreamable*> shapes, const char* fileName )
 		if ( i > 0 )
 			outFile << "\n";
 		outFile << *shapes[i];
-		delete shapes[i];
 	}
 	outFile.close();
 }
@@ -40,23 +42,23 @@ int main( int argc, char *argv[] )
 	if( argc == 2 )
 	{
 		// generating N random shapes and writing them to a file
-		std::vector<IStreamable*> shapes;
+		StreamablePtrs shapes;
 		srand( (unsigned int)time( NULL ) );
 		for(int i = 0; i < 100; i++)
 		{
 			switch( rand() % 4 )
 			{
 			case 0:
-				shapes.push_back( new Circle( ShapePos2D( rand(), rand() ), rand() ) );
+				shapes.push_back( StreamablePtr( new Circle( ShapePos2D( rand(), rand() ), rand() ) ) );
 				break;
 			case 1:
-				shapes.push_back( new RegularPolygon( ShapePos2D( rand(), rand() ), rand(), rand() ) );
+				shapes.push_back( StreamablePtr( new RegularPolygon( ShapePos2D( rand(), rand() ), rand(), rand() ) ) );
 				break;
 			case 2:
-				shapes.push_back( new EquilateralTriangle( ShapePos2D( rand(), rand() ), rand() ) );
+				shapes.push_back( StreamablePtr( new EquilateralTriangle( ShapePos2D( rand(), rand() ), rand() ) ) );
 				break;
 			case 3:
-				shapes.push_back( new Square( ShapePos2D( rand(), rand() ), rand() ) );
+				shapes.push_back( StreamablePtr( new Square( ShapePos2D( rand(), rand() ), rand() ) ) );
 				break;
 			}
 		}
@@ -67,7 +69,7 @@ int main( int argc, char *argv[] )
 	else if( argc == 3 )
 	{
 		// loading shapes
-		std::vector<IStreamable*> shapes;
+		StreamablePtrs shapes;
 		std::ifstream inFile( argv[1] );
 		if( !inFile.is_open() )
 		{
@@ -75,11 +77,11 @@ int main( int argc, char *argv[] )
 			return 1;
 		}
 		while( !inFile.eof() )
-			shapes.push_back( IStreamable::unserialize( inFile ) );
+			shapes.push_back( Streamable::unserialize( inFile ) );
 		inFile.close();
 
 		// saving shapes
-		writeToFile( shapes, argv[2] );;
+		writeToFile( shapes, argv[2] );
 	}
 	else
 	{

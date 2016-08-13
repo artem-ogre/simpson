@@ -1,9 +1,11 @@
 #pragma once
 
-class IStreamable; 
+#include <memory>
+
+class Streamable; 
 class IStreamableFactory
 {
 public:
-	virtual IStreamable* create() const = 0;
+	virtual std::unique_ptr<Streamable> create() const = 0;
 };
 

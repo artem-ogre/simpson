@@ -1,18 +1,17 @@
 #pragma once
 
 #include "Position2D.h"
-#include "IStreamable.h"
+#include "Streamable.h"
 
-typedef double shape_t;
-typedef Position2D<shape_t> ShapePos2D;
+using shape_t = double;
+using ShapePos2D = Position2D<shape_t>;
 
 //!  Interface for the shape type. Supports serialization via IStreamable
-class Shape : public IStreamable
+class Shape : public Streamable
 {
 public:
-	Shape();
+	Shape() = default;
 	Shape(const ShapePos2D& centroid );
-	virtual ~Shape();
 
 	const ShapePos2D& getCentroid() const;
 	void setCentroid( const ShapePos2D& newCentroid );

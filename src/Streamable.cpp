@@ -1,23 +1,17 @@
-#include "IStreamable.h"
+#include "Streamable.h"
 #include <exception>
 
 const std::exception notRegistered( "The class identificator is not registered in the map" );
 const std::exception alreadyRegistered( "The class identificator is already registered in the map" );
 
-typedef std::map<std::string, IStreamableFactory*> FactoryMap;
-FactoryMap& factoryMap()//avoiding an initialization order fiasco
+using FactoryMap = std::map<std::string, IStreamableFactory*>;
+FactoryMap& factoryMap() //avoiding an initialization order fiasco using 'Construct On First Use' idiom
 {
 	static FactoryMap factories;
 	return factories;
 }
 
-IStreamable::IStreamable()
-{}
-
-IStreamable::~IStreamable()
-{}
-
-void IStreamable::registerType( const std::string& name, IStreamableFactory* factory )
+void Streamable::registerType( const std::string& name, IStreamableFactory* factory )
 {
 	auto search = factoryMap().find( name );
 	if ( search != factoryMap().end() )
@@ -25,32 +19,32 @@ void IStreamable::registerType( const std::string& name, IStreamableFactory* fac
 	factoryMap()[name] = factory;
 }
 
-void IStreamable::serialize( std::ostream& outStream, const IStreamable* obj )
+void Streamable::serialize( std::ostream& outStream, const Streamable* obj )
 {
 	outStream << " " << obj->getClassName();
 	obj->writeState( outStream );
 }
 
-IStreamable* IStreamable::unserialize( std::istream& inStream )
+std::unique_ptr<Streamable> Streamable::unserialize( std::istream& inStream )
 {
 	std::string classId;
 	inStream >> classId;
 	auto search = factoryMap().find( classId );
 	if ( search == factoryMap().end() )
 		throw notRegistered;
-	IStreamable* result = search->second->create();
+	auto result = search->second->create();
 	result->readState( inStream );
 	return result;
 }
 
-std::ostream& operator<<( std::ostream& outStream, const IStreamable& obj )
+std::ostream& operator<<( std::ostream& outStream, const Streamable& obj )
 {
-	IStreamable::serialize( outStream, &obj );
+	Streamable::serialize( outStream, &obj );
 	return outStream;
 }
 
-std::istream& operator>>( std::istream& inStream, const IStreamable& obj )
+std::istream& operator>>( std::istream& inStream, const Streamable& obj )
 {
-	IStreamable::unserialize( inStream );
+	Streamable::unserialize( inStream );
 	return inStream;
 }

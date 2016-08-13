@@ -16,8 +16,9 @@ Circle::Circle( const ShapePos2D& centroid, const shape_t& radius )
 {
 	setRadius( radius );
 }
-Circle::Circle() : Circle( ShapePos2D(), 0 ) {}
-Circle::~Circle() {}
+
+Circle::Circle() : Circle( ShapePos2D(), 0 ) 
+{}
 
 shape_t Circle::getArea() const
 {
