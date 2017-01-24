@@ -1,33 +1,24 @@
 #include "Shape.h"
 
-Shape::Shape( const ShapePos2D& centroid ) 
-	: m_centroid( centroid ) 
-{}
-
-void Shape::setCentroid( const ShapePos2D& newCentroid )
+Shape::Shape(const ShapePos2D& centroid)
+    : m_centroid(centroid)
 {
-	m_centroid = newCentroid;
 }
 
-void Shape::moveCentroid( const ShapePos2D& offset )
+void Shape::setCentroid(const ShapePos2D& newCentroid) { m_centroid = newCentroid; }
+
+void Shape::moveCentroid(const ShapePos2D& offset) { m_centroid += offset; }
+
+void Shape::write(std::ostream& outStream) const
 {
-	m_centroid += offset;
+    outStream << " " << m_centroid.x() << " " << m_centroid.y();
 }
 
-void Shape::writeState( std::ostream& outStream ) const
+void Shape::read(std::istream& inStream)
 {
-	outStream << " " << m_centroid.x() << " " << m_centroid.y();
+    shape_t pos[2];
+    inStream >> pos[0] >> pos[1];
+    m_centroid = ShapePos2D(pos[0], pos[1]);
 }
 
-void Shape::readState( std::istream& inStream )
-{
-	shape_t pos[2];
-	inStream >> pos[0] >> pos[1];
-	m_centroid = ShapePos2D( pos[0], pos[1] );
-}
-
-const ShapePos2D& Shape::getCentroid() const
-{
-	return m_centroid;
-}
-
+const ShapePos2D& Shape::getCentroid() const { return m_centroid; }

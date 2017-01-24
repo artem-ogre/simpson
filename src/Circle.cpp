@@ -3,48 +3,44 @@
 
 #include "Circle.h"
 
-#include <exception>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
-const std::exception negativeRadius( "The radius should be non-negative" );
+const std::runtime_error negativeRadius("The radius should be non-negative");
 
-REGISTER_TYPE( Circle )
+REGISTER_SERIALIZABLE_TYPE(Circle)
 
-Circle::Circle( const ShapePos2D& centroid, const shape_t& radius ) 
-	: Shape( centroid )
+Circle::Circle(const ShapePos2D& centroid, const shape_t& radius)
+    : Shape(centroid)
 {
-	setRadius( radius );
+    setRadius(radius);
 }
 
-Circle::Circle() : Circle( ShapePos2D(), 0 ) 
-{}
-
-shape_t Circle::getArea() const
+Circle::Circle()
+    : Circle(ShapePos2D(), 0)
 {
-	return M_PI * m_radius * m_radius;
 }
 
-void Circle::writeState( std::ostream& outStream ) const
+shape_t Circle::getArea() const { return M_PI * m_radius * m_radius; }
+
+void Circle::write(std::ostream& outStream) const
 {
-	Shape::writeState( outStream );
-	outStream << " " << m_radius;
+    Shape::write(outStream);
+    outStream << " " << m_radius;
 }
 
-void Circle::readState( std::istream& inStream )
+void Circle::read(std::istream& inStream)
 {
-	Shape::readState( inStream );
-	inStream >> m_radius;
+    Shape::read(inStream);
+    inStream >> m_radius;
 }
 
-const shape_t& Circle::getRadius()
-{
-	return m_radius;
-}
+const shape_t& Circle::getRadius() { return m_radius; }
 
-void Circle::setRadius( const shape_t& radius )
+void Circle::setRadius(const shape_t& radius)
 {
-	if ( radius < shape_t( 0 ) )
-		throw negativeRadius;
-	m_radius = radius;
+    if(radius < shape_t(0))
+        throw negativeRadius;
+    m_radius = radius;
 }
