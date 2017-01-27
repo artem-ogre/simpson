@@ -18,7 +18,7 @@
 static_assert(std::is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
 static_assert(std::is_floating_point<shape_t>::value, "shape_t  is not floating point");
 
-using StreamablePtrs = std::vector<ISerializablePtr>;
+using StreamablePtrs = std::vector<ISerializableUniquePtr>;
 
 void writeToFile(const StreamablePtrs &shapes, const char *fileName)
 {
@@ -43,23 +43,23 @@ int main(int argc, char *argv[])
     {
         // generating N random shapes and writing them to a file
         StreamablePtrs shapes;
-        srand((unsigned int)time(NULL));
+        srand(time(NULL));
         for(int i = 0; i < 100; i++)
         {
             switch(rand() % 4)
             {
             case 0:
-                shapes.push_back(ISerializablePtr(new Circle(ShapePos2D(rand(), rand()), rand())));
+                shapes.push_back(ISerializableUniquePtr(new Circle(ShapePos2D(rand(), rand()), rand())));
                 break;
             case 1:
                 shapes.push_back(
-                    ISerializablePtr(new RegularPolygon(ShapePos2D(rand(), rand()), rand(), rand())));
+                    ISerializableUniquePtr(new RegularPolygon(ShapePos2D(rand(), rand()), rand(), rand())));
                 break;
             case 2:
-                shapes.push_back(ISerializablePtr(new EquilateralTriangle(ShapePos2D(rand(), rand()), rand())));
+                shapes.push_back(ISerializableUniquePtr(new EquilateralTriangle(ShapePos2D(rand(), rand()), rand())));
                 break;
             case 3:
-                shapes.push_back(ISerializablePtr(new Square(ShapePos2D(rand(), rand()), rand())));
+                shapes.push_back(ISerializableUniquePtr(new Square(ShapePos2D(rand(), rand()), rand())));
                 break;
             }
         }

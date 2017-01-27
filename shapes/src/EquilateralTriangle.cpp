@@ -12,6 +12,6 @@ EquilateralTriangle::EquilateralTriangle()
 {
 }
 
-void EquilateralTriangle::write(std::ostream& outStream) const { RegularPolygon::write(outStream); }
+void EquilateralTriangle::saveTo(std::ostream& outStream) const { RegularPolygon::saveTo(outStream); }
 
-void EquilateralTriangle::read(std::istream& inStream) { RegularPolygon::read(inStream); }
+void EquilateralTriangle::loadFrom(std::istream& inStream) { RegularPolygon::loadFrom(inStream); }

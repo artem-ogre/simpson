@@ -24,15 +24,15 @@ Circle::Circle()
 
 shape_t Circle::getArea() const { return M_PI * m_radius * m_radius; }
 
-void Circle::write(std::ostream& outStream) const
+void Circle::saveTo(std::ostream& outStream) const
 {
-    Shape::write(outStream);
+    Shape::saveTo(outStream);
     outStream << " " << m_radius;
 }
 
-void Circle::read(std::istream& inStream)
+void Circle::loadFrom(std::istream& inStream)
 {
-    Shape::read(inStream);
+    Shape::loadFrom(inStream);
     inStream >> m_radius;
 }
 

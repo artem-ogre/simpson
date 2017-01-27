@@ -9,12 +9,12 @@ void Shape::setCentroid(const ShapePos2D& newCentroid) { m_centroid = newCentroi
 
 void Shape::moveCentroid(const ShapePos2D& offset) { m_centroid += offset; }
 
-void Shape::write(std::ostream& outStream) const
+void Shape::saveTo(std::ostream& outStream) const
 {
     outStream << " " << m_centroid.x() << " " << m_centroid.y();
 }
 
-void Shape::read(std::istream& inStream)
+void Shape::loadFrom(std::istream& inStream)
 {
     shape_t pos[2];
     inStream >> pos[0] >> pos[1];

@@ -37,14 +37,14 @@ const shape_t& Rectangle::getWidth() const { return m_width; }
 
 const shape_t& Rectangle::getHeight() const { return m_height; }
 
-void Rectangle::write(std::ostream& outStream) const
+void Rectangle::saveTo(std::ostream& outStream) const
 {
-    Shape::write(outStream);
+    Shape::saveTo(outStream);
     outStream << " " << m_width << " " << m_height;
 }
 
-void Rectangle::read(std::istream& inStream)
+void Rectangle::loadFrom(std::istream& inStream)
 {
-    Shape::read(inStream);
+    Shape::loadFrom(inStream);
     inStream >> m_width >> m_height;
 }

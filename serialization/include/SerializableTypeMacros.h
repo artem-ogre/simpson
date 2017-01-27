@@ -6,8 +6,8 @@
 #define SERIALIZABLE_TYPE                                                                                    \
     public:                                                                                                  \
         virtual std::string getClassName() const override;                                                   \
-        virtual void write(std::ostream& outStream) const override;                                          \
-        virtual void read(std::istream& inStream) override;                                                  \
+        virtual void saveTo(std::ostream& outStream) const override;                                         \
+        virtual void loadFrom(std::istream& inStream) override;                                              \
     private:
 /*!
 *   Automatically generates a factory for the serializable type

@@ -14,7 +14,7 @@ struct ISerializer : VirtualBase
 //! \brief Interface for serializable object deserializer
 struct IDeserializer : VirtualBase
 {
-    virtual ISerializablePtr deserialize() const = 0;
+    virtual ISerializableUniquePtr deserialize() const = 0;
 };
 
 //! \brief Serializes serializable to a stream
@@ -34,7 +34,7 @@ class StreamDeserializer : public IDeserializer
 public:
     StreamDeserializer(std::istream& inStream);
     // IDeserializer interface
-    virtual ISerializablePtr deserialize() const;
+    virtual ISerializableUniquePtr deserialize() const;
 private:
     std::istream& m_inStream;
 };
