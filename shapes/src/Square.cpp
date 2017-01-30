@@ -14,4 +14,4 @@ Square::Square()
 
 void Square::saveTo(std::ostream& outStream) const { RegularPolygon::saveTo(outStream); }
 
-void Square::loadFrom(std::istream& inStream) { RegularPolygon::loadFrom(inStream); }
+void Square::loadFrom(IStorageIn& inStream) { RegularPolygon::loadFrom(inStream); }

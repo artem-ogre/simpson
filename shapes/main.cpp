@@ -6,14 +6,17 @@
 #include <time.h>
 #include <type_traits>
 #include <vector>
+#include <memory>
 
-#include "Serializers.h"
+#include "StreamSerializer.h"
+#include "StreamDeserializer.h"
 #include "Circle.h"
 #include "EquilateralTriangle.h"
 #include "Rectangle.h"
 #include "RegularPolygon.h"
 #include "Shape.h"
 #include "Square.h"
+#include "StreamStorageIn.h"
 
 static_assert(std::is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
 static_assert(std::is_floating_point<shape_t>::value, "shape_t  is not floating point");
@@ -75,9 +78,9 @@ int main(int argc, char *argv[])
             std::cout << "can't open the input file\n";
             return 1;
         }
-        const StreamDeserializer deserializer(inFile);
+        StreamDeserializer deserializer(inFile);
         while(!inFile.eof())
-            shapes.push_back(deserializer.deserialize());
+            shapes.push_back(ISerializableUniquePtr(deserializer.deserialize()));
         inFile.close();
 
         // saving shapes

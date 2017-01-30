@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "IStorageIn.h"
 
 Shape::Shape(const ShapePos2D& centroid)
     : m_centroid(centroid)
@@ -14,7 +15,7 @@ void Shape::saveTo(std::ostream& outStream) const
     outStream << " " << m_centroid.x() << " " << m_centroid.y();
 }
 
-void Shape::loadFrom(std::istream& inStream)
+void Shape::loadFrom(IStorageIn& inStream)
 {
     shape_t pos[2];
     inStream >> pos[0] >> pos[1];

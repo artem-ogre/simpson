@@ -17,7 +17,7 @@ public:
     virtual shape_t getArea() const = 0;
     // IStreamable
     virtual void saveTo(std::ostream& outStream) const override;
-    virtual void loadFrom(std::istream& inStream) override;
+    virtual void loadFrom(IStorageIn& inStream) override;
 
 protected:
     ShapePos2D m_centroid;

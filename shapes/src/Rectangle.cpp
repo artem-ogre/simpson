@@ -1,4 +1,5 @@
 #include "Rectangle.h"
+#include "IStorageIn.h"
 #include <stdexcept>
 
 const std::runtime_error negativeDimension("The rectangle dimensions should be non-negative");
@@ -43,7 +44,7 @@ void Rectangle::saveTo(std::ostream& outStream) const
     outStream << " " << m_width << " " << m_height;
 }
 
-void Rectangle::loadFrom(std::istream& inStream)
+void Rectangle::loadFrom(IStorageIn& inStream)
 {
     Shape::loadFrom(inStream);
     inStream >> m_width >> m_height;

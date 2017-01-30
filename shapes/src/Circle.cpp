@@ -2,6 +2,7 @@
 #include <cmath>
 
 #include "Circle.h"
+#include "IStorageIn.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -30,7 +31,7 @@ void Circle::saveTo(std::ostream& outStream) const
     outStream << " " << m_radius;
 }
 
-void Circle::loadFrom(std::istream& inStream)
+void Circle::loadFrom(IStorageIn& inStream)
 {
     Shape::loadFrom(inStream);
     inStream >> m_radius;
