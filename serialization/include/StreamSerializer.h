@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ISerializer.h"
+#include "StreamStorageOut.h"
 
 #include <iostream>
 
@@ -10,9 +11,9 @@ class StreamSerializer : public ISerializer
 public:
     StreamSerializer(std::ostream& outStream);
     // ISerializer interface
-    virtual void serialize(const ISerializable* obj) const;
+    virtual void serialize(ISerializable* obj) override;
 private:
-    std::ostream& m_outStream;
+    StreamStorageOut m_storage;
 };
 
-std::ostream& operator<<(std::ostream& outStream, const ISerializable& obj);
+std::ostream& operator<<(std::ostream& outStream, ISerializable& obj);

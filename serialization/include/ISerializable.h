@@ -7,12 +7,13 @@
 #include <string>
 
 struct IStorageIn;
+struct IStorageOut;
 
 //!  Interface for the serializable type.
 struct ISerializable : VirtualBase
 {
     //! writes object to a stream
-    virtual void saveTo(std::ostream& outStream) const = 0; // SERIALIZABLE_TYPE generates overriding declaration
+    virtual void saveTo(IStorageOut& outStream) const = 0;  // SERIALIZABLE_TYPE generates overriding declaration
     //! reads object from a stream
     virtual void loadFrom(IStorageIn& inStream) = 0;        // SERIALIZABLE_TYPE generates overriding declaration
     //! returns serializable object's class name

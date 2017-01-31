@@ -1,5 +1,6 @@
 #include "Rectangle.h"
 #include "IStorageIn.h"
+#include "IStorageOut.h"
 #include <stdexcept>
 
 const std::runtime_error negativeDimension("The rectangle dimensions should be non-negative");
@@ -38,7 +39,7 @@ const shape_t& Rectangle::getWidth() const { return m_width; }
 
 const shape_t& Rectangle::getHeight() const { return m_height; }
 
-void Rectangle::saveTo(std::ostream& outStream) const
+void Rectangle::saveTo(IStorageOut& outStream) const
 {
     Shape::saveTo(outStream);
     outStream << " " << m_width << " " << m_height;

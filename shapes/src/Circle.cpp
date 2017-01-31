@@ -3,6 +3,7 @@
 
 #include "Circle.h"
 #include "IStorageIn.h"
+#include "IStorageOut.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -25,7 +26,7 @@ Circle::Circle()
 
 shape_t Circle::getArea() const { return M_PI * m_radius * m_radius; }
 
-void Circle::saveTo(std::ostream& outStream) const
+void Circle::saveTo(IStorageOut& outStream) const
 {
     Shape::saveTo(outStream);
     outStream << " " << m_radius;

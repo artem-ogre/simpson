@@ -7,5 +7,5 @@ struct ISerializable;
 //! \brief Interface for serializable object serializer
 struct ISerializer : VirtualBase
 {
-    virtual void serialize(const ISerializable* obj) const = 0;
+    virtual void serialize(ISerializable* obj) = 0;
 };

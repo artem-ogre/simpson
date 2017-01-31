@@ -3,15 +3,15 @@
 #include "SerializableTypes.h"
 
 StreamDeserializer::StreamDeserializer(std::istream& inStream)
-    : m_inStream(inStream)
+    : m_storage(inStream)
 {}
 
 ISerializable* StreamDeserializer::deserialize()
 {
     std::string typeName;
-    m_inStream >> typeName;
+    m_storage >> typeName;
     ISerializable* result = SerializableTypes::create(typeName);
-    result->loadFrom(m_inStream);
+    result->loadFrom(m_storage);
     return result;
 }
 

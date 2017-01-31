@@ -13,7 +13,7 @@ public:
     // IDeserializer interface
     virtual ISerializable* deserialize() override;
 private:
-    StreamStorageIn m_inStream;
+    StreamStorageIn m_storage;
 };
 
 std::istream& operator>>(std::istream& inStream, ISerializable& obj);
