@@ -1,11 +1,11 @@
 #pragma once
 
-#include "VirtualBase.h"
+#include "PolymorphicBaseClass.h"
 
 struct ISerializable;
 
 //! \brief Interface for serializable objects factory
-struct ISerializableFactory : VirtualBase
+struct ISerializableFactory : PolymorphicBaseClass
 {
     /*!
      * \brief creates serializable object

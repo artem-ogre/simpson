@@ -1,11 +1,11 @@
 #pragma once
 
-#include "VirtualBase.h"
+#include "PolymorphicBaseClass.h"
 
 struct ISerializable;
 
 //! \brief Interface for serializable object serializer
-struct ISerializer : VirtualBase
+struct ISerializer : PolymorphicBaseClass
 {
     virtual void serialize(ISerializable* obj) = 0;
 };

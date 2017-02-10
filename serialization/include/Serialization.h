@@ -11,4 +11,4 @@ and REGISTER_SERIALIZABLE_TYPE macro in implementation.
 #include "ISerializable.h"
 #include "ISerializableFactory.h"
 #include "SerializableTypeMacros.h"
-#include "SerializableTypes.h"
+#include "SerializationUtilities.h"

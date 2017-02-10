@@ -2,8 +2,8 @@
 #include <cmath>
 
 #include "Circle.h"
-#include "IStorageIn.h"
-#include "IStorageOut.h"
+#include "IStorageRead.h"
+#include "IStorageWrite.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -26,13 +26,13 @@ Circle::Circle()
 
 shape_t Circle::getArea() const { return M_PI * m_radius * m_radius; }
 
-void Circle::saveTo(IStorageOut& outStream) const
+void Circle::saveTo(IStorageWrite& outStream) const
 {
     Shape::saveTo(outStream);
     outStream << " " << m_radius;
 }
 
-void Circle::loadFrom(IStorageIn& inStream)
+void Circle::loadFrom(IStorageRead& inStream)
 {
     Shape::loadFrom(inStream);
     inStream >> m_radius;

@@ -1,6 +1,6 @@
 #include "Shape.h"
-#include "IStorageIn.h"
-#include "IStorageOut.h"
+#include "IStorageRead.h"
+#include "IStorageWrite.h"
 
 Shape::Shape(const ShapePos2D& centroid)
     : m_centroid(centroid)
@@ -11,13 +11,13 @@ void Shape::setCentroid(const ShapePos2D& newCentroid) { m_centroid = newCentroi
 
 void Shape::moveCentroid(const ShapePos2D& offset) { m_centroid += offset; }
 
-void Shape::saveTo(IStorageOut& outStream) const
+void Shape::saveTo(IStorageWrite& outStream) const
 {
     std::string space(" ");
     outStream << " " << m_centroid.x() << " " << m_centroid.y();
 }
 
-void Shape::loadFrom(IStorageIn& inStream)
+void Shape::loadFrom(IStorageRead& inStream)
 {
     shape_t pos[2];
     inStream >> pos[0] >> pos[1];

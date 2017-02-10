@@ -1,4 +1,4 @@
-#include "SerializableTypes.h"
+#include "SerializationUtilities.h"
 #include "ISerializable.h"
 #include "ISerializableFactory.h"
 
@@ -19,7 +19,7 @@ FactoryMap &factoryMap()
 
 } // namespace
 
-void SerializableTypes::registerType(const std::string &typeName, ISerializableFactory *factory)
+void SerializationUtilities::registerType(const std::string &typeName, ISerializableFactory *factory)
 {
     auto search = factoryMap().find(typeName);
     if(search != factoryMap().end())
@@ -27,7 +27,7 @@ void SerializableTypes::registerType(const std::string &typeName, ISerializableF
     factoryMap()[typeName] = factory;
 }
 
-ISerializable *SerializableTypes::create(const std::string &typeName)
+ISerializable *SerializationUtilities::create(const std::string &typeName)
 {
     auto search = factoryMap().find(typeName);
     if(search == factoryMap().end())

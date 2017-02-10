@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Serialization.h"
 #include "Position2D.h"
+
+#include <Serialization.h>
 
 using shape_t = double;
 using ShapePos2D = Position2D<shape_t>;
@@ -16,8 +17,8 @@ public:
     void moveCentroid(const ShapePos2D& offset);
     virtual shape_t getArea() const = 0;
     // IStreamable
-    virtual void saveTo(IStorageOut& outStream) const override;
-    virtual void loadFrom(IStorageIn& inStream) override;
+    virtual void saveTo(IStorageWrite& outStream) const override;
+    virtual void loadFrom(IStorageRead& inStream) override;
 
 protected:
     ShapePos2D m_centroid;

@@ -5,7 +5,7 @@
 struct ISerializableFactory;
 struct ISerializable;
 
-namespace SerializableTypes
+namespace SerializationUtilities
 {
     /*!
      * \brief Registers a new serializable type with its class name and a factory

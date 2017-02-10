@@ -1,22 +1,18 @@
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <stdlib.h>
-#include <string>
-#include <time.h>
-#include <type_traits>
-#include <vector>
-#include <memory>
-
-#include "StreamSerializer.h"
-#include "StreamDeserializer.h"
 #include "Circle.h"
+
 #include "EquilateralTriangle.h"
 #include "Rectangle.h"
 #include "RegularPolygon.h"
 #include "Shape.h"
 #include "Square.h"
-#include "StreamStorageIn.h"
+
+// serialization
+#include <SerializationToStream.h>
+
+#include <ctime>
+#include <fstream>
+#include <stdlib.h>
+#include <vector>
 
 static_assert(std::is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
 static_assert(std::is_floating_point<shape_t>::value, "shape_t  is not floating point");
@@ -46,7 +42,7 @@ int main(int argc, char *argv[])
     {
         // generating N random shapes and writing them to a file
         StreamablePtrs shapes;
-        srand(time(NULL));
+        srand(std::time(NULL));
         for(int i = 0; i < 100; i++)
         {
             switch(rand() % 4)
