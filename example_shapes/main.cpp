@@ -13,80 +13,87 @@
 #include <fstream>
 #include <stdlib.h>
 #include <vector>
+#include <string>
 
-static_assert(std::is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
-static_assert(std::is_floating_point<shape_t>::value, "shape_t  is not floating point");
+using namespace std;
 
-using StreamablePtrs = std::vector<ISerializableUniquePtr>;
+static_assert(is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
+static_assert(is_floating_point<shape_t>::value, "shape_t  is not floating point");
 
-void writeToFile(const StreamablePtrs &shapes, const char *fileName)
+using StreamablePtrs = vector<ISerializableUniquePtr>;
+
+void writeToFile(const StreamablePtrs &shapes, const string &fileName)
 {
-    std::ofstream outFile(fileName);
+    ofstream outFile(fileName);
     if(!outFile.is_open())
-    {
-        std::cout << "can't open the output file\n";
-        return;
-    }
-    for(size_t i = 0; i < shapes.size(); ++i)
-    {
-        outFile << *shapes[i];
-    }
+        throw std::runtime_error("can't open the output file");
+    for(const auto &shape : shapes)
+        outFile << *shape;
     outFile.close();
+}
+
+StreamablePtrs readFromFile(const string &fileName)
+{
+    // loading shapes
+    ifstream inFile(fileName);
+    if(!inFile.is_open())
+        throw std::runtime_error("can't open the input file");
+    StreamablePtrs shapes;
+    StreamDeserializer deserializer(inFile);
+    while(!inFile.eof())
+        shapes.push_back(ISerializableUniquePtr(deserializer.deserialize()));
+    inFile.close();
+    return shapes;
 }
 
 int main(int argc, char *argv[])
 {
-    if(argc == 2)
+    try
     {
-        // generating N random shapes and writing them to a file
-        StreamablePtrs shapes;
-        srand(std::time(NULL));
-        for(int i = 0; i < 100; i++)
+        if(argc == 2)
         {
-            switch(rand() % 4)
+            // generating N random shapes and writing them to a file
+            StreamablePtrs shapes;
+            srand(time(nullptr));
+            for(int i = 0; i < 100; i++)
             {
-            case 0:
-                shapes.push_back(ISerializableUniquePtr(new Circle(ShapePos2D(rand(), rand()), rand())));
-                break;
-            case 1:
-                shapes.push_back(
-                    ISerializableUniquePtr(new RegularPolygon(ShapePos2D(rand(), rand()), rand(), rand())));
-                break;
-            case 2:
-                shapes.push_back(ISerializableUniquePtr(new EquilateralTriangle(ShapePos2D(rand(), rand()), rand())));
-                break;
-            case 3:
-                shapes.push_back(ISerializableUniquePtr(new Square(ShapePos2D(rand(), rand()), rand())));
-                break;
+                switch(rand() % 4)
+                {
+                case 0:
+                    shapes.push_back(make_unique<Circle>(ShapePos2D(rand(), rand()), rand()));
+                    break;
+                case 1:
+                    shapes.push_back(make_unique<RegularPolygon>(ShapePos2D(rand(), rand()), rand(), rand()));
+                    break;
+                case 2:
+                    shapes.push_back(make_unique<EquilateralTriangle>(ShapePos2D(rand(), rand()), rand()));
+                    break;
+                case 3:
+                    shapes.push_back(make_unique<Square>(ShapePos2D(rand(), rand()), rand()));
+                    break;
+                }
             }
+            writeToFile(shapes, argv[1]);
         }
-        writeToFile(shapes, argv[1]);
-    }
-    else if(argc == 3)
-    {
-        // loading shapes
-        StreamablePtrs shapes;
-        std::ifstream inFile(argv[1]);
-        if(!inFile.is_open())
+        else if(argc == 3)
         {
-            std::cout << "can't open the input file\n";
-            return 1;
+            // loading shapes
+            StreamablePtrs shapes = readFromFile(argv[1]);
+            // saving shapes
+            writeToFile(shapes, argv[2]);
         }
-        StreamDeserializer deserializer(inFile);
-        while(!inFile.eof())
-            shapes.push_back(ISerializableUniquePtr(deserializer.deserialize()));
-        inFile.close();
-
-        // saving shapes
-        writeToFile(shapes, argv[2]);
+        else
+        {
+            cout << "Usage:\n";
+            cout << "Scenario 1\n[outputFile] - to generate 100 random shapes and write them to the file\n";
+            cout << "Scenario 2\n[inputFile] [outputFile] - to load figures from the input file and save "
+                    "them to the output file\n";
+        }
     }
-    else
+    catch(const std::runtime_error &error)
     {
-        std::cout << "Usage:\n";
-        std::cout << "Scenario 1\n[outputFile] - to generate 100 random shapes and write them to the file\n";
-        std::cout << "Scenario 2\n[inputFile] [outputFile] - to load figures from the input file and save "
-                     "them to the output file\n";
+        cout << error.what() << endl;
+        return 1;
     }
-
     return 0;
 }
