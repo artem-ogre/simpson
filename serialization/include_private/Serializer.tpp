@@ -3,6 +3,9 @@
 #include "ISerializable.h"
 #include "Serializer.h"
 
+namespace simpson
+{
+
 template <typename TStorageWrite>
 Serializer<TStorageWrite>::Serializer(std::ostream& outStream)
     : m_storage(outStream)
@@ -13,4 +16,6 @@ void Serializer<TStorageWrite>::serialize(ISerializable* obj)
 {
     m_storage << obj->getClassName();
     obj->serialize(m_storage);
+}
+
 }

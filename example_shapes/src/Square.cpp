@@ -1,5 +1,7 @@
 #include "Square.h"
 
+using namespace simpson;
+
 REGISTER_A_SERIALIZABLE_TYPE(Square)
 
 Square::Square(const ShapePos2D& centroid, const shape_t& radius)

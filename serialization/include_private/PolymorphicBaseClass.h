@@ -1,5 +1,7 @@
 #pragma once
 
+namespace simpson {
+
 //! \brief Defaults the rule-of-five so that derived classes can follow rule-of-zero
 struct PolymorphicBaseClass
 {
@@ -10,3 +12,5 @@ struct PolymorphicBaseClass
     PolymorphicBaseClass& operator=(const PolymorphicBaseClass&) = default;
     PolymorphicBaseClass& operator=(PolymorphicBaseClass&&) = default;
 };
+
+}

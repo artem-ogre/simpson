@@ -16,6 +16,7 @@
 #include <string>
 
 using namespace std;
+using namespace simpson;
 
 static_assert(is_arithmetic<shape_t>::value, "shape_t  is not arithmetic");
 static_assert(is_floating_point<shape_t>::value, "shape_t  is not floating point");

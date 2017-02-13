@@ -1,5 +1,7 @@
 #include "SerializationToStream.h"
 
+using namespace simpson;
+
 std::ostream& operator<<(std::ostream& outStream, ISerializable& obj)
 {
     StreamSerializer(outStream).serialize(&obj);

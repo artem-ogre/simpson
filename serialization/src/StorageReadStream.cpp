@@ -2,6 +2,8 @@
 
 #include <utility>
 
+using namespace simpson;
+
 namespace
 {
 

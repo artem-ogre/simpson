@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+namespace simpson {
+
 struct StorageReadStream : IStorageRead
 {
     explicit StorageReadStream(std::istream &inStream);
@@ -23,3 +25,5 @@ struct StorageReadStream : IStorageRead
 private:
     std::istream &m_inStream;
 };
+
+} // namespace simpson

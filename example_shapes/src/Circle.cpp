@@ -9,6 +9,8 @@
 #include <stdexcept>
 #include <string>
 
+using namespace simpson;
+
 const std::runtime_error negativeRadius("The radius should be non-negative");
 
 REGISTER_A_SERIALIZABLE_TYPE(Circle)

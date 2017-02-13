@@ -4,6 +4,8 @@
 
 #include <string>
 
+namespace simpson {
+
 struct IStorageRead : PolymorphicBaseClass
 {
     // Extractors
@@ -19,3 +21,5 @@ struct IStorageRead : PolymorphicBaseClass
     virtual IStorageRead& operator>>(long double& obj) = 0;
     virtual IStorageRead& operator>>(std::string& obj) = 0;
 };
+
+}

@@ -6,8 +6,13 @@
 #include "StorageReadStream.h"
 #include "StorageWriteStream.h"
 
+namespace simpson
+{
+
 using StreamSerializer = Serializer<StorageWriteStream>;
 using StreamDeserializer = Deserializer<StorageReadStream>;
 
-std::ostream& operator<<(std::ostream& outStream, ISerializable& obj);
-std::istream& operator>>(std::istream& inStream, ISerializable* obj);
+}
+
+std::ostream& operator<<(std::ostream& outStream, simpson::ISerializable& obj);
+std::istream& operator>>(std::istream& inStream, simpson::ISerializable* obj);

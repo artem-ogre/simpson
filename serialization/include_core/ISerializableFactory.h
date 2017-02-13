@@ -2,6 +2,8 @@
 
 #include "PolymorphicBaseClass.h"
 
+namespace simpson {
+
 struct ISerializable;
 
 //! \brief Interface for serializable objects factory
@@ -13,3 +15,5 @@ struct ISerializableFactory : PolymorphicBaseClass
      */
     virtual ISerializable* create() const = 0;
 };
+
+}

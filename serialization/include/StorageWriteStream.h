@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+namespace simpson {
+
 struct StorageWriteStream : IStorageWrite
 {
     explicit StorageWriteStream(std::ostream &outStream);
@@ -26,3 +28,5 @@ struct StorageWriteStream : IStorageWrite
 private:
     std::ostream &m_outStream;
 };
+
+}

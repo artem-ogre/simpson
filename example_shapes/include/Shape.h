@@ -8,7 +8,7 @@ using shape_t = double;
 using ShapePos2D = Position2D<shape_t>;
 
 //!  Interface for the shape type. Supports serialization via IStreamable
-class Shape : public ISerializable
+class Shape : public simpson::ISerializable
 {
 public:
     Shape(const ShapePos2D& centroid);
@@ -17,8 +17,8 @@ public:
     void moveCentroid(const ShapePos2D& offset);
     virtual shape_t getArea() const = 0;
     // IStreamable
-    virtual void serialize(IStorageWrite& outStream) const override;
-    virtual void deserialize(IStorageRead& inStream) override;
+    virtual void serialize(simpson::IStorageWrite& outStream) const override;
+    virtual void deserialize(simpson::IStorageRead& inStream) override;
 
 protected:
     ShapePos2D m_centroid;

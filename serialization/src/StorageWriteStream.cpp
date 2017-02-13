@@ -1,5 +1,7 @@
 #include "StorageWriteStream.h"
 
+using namespace simpson;
+
 namespace
 {
 

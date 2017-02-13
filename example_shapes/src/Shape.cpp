@@ -2,6 +2,8 @@
 #include "IStorageRead.h"
 #include "IStorageWrite.h"
 
+using namespace simpson;
+
 Shape::Shape(const ShapePos2D& centroid)
     : m_centroid(centroid)
 {

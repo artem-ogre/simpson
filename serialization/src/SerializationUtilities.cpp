@@ -4,6 +4,8 @@
 
 #include <map>
 
+using namespace simpson;
+
 namespace
 {
 

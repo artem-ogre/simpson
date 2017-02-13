@@ -4,6 +4,8 @@
 #include "ISerializable.h"
 #include "SerializationUtilities.h"
 
+namespace simpson {
+
 template <typename TStorageRead>
 Deserializer<TStorageRead>::Deserializer(std::istream& inStream)
     : m_storage(inStream)
@@ -17,4 +19,6 @@ ISerializable* Deserializer<TStorageRead>::deserialize()
     ISerializable* result = SerializationUtilities::create(typeName);
     result->deserialize(m_storage);
     return result;
+}
+
 }

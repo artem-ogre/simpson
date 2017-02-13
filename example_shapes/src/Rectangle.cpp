@@ -3,6 +3,8 @@
 #include "IStorageWrite.h"
 #include <stdexcept>
 
+using namespace simpson;
+
 const std::runtime_error negativeDimension("The rectangle dimensions should be non-negative");
 
 REGISTER_A_SERIALIZABLE_TYPE(Rectangle)

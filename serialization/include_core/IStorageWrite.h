@@ -4,6 +4,8 @@
 
 #include <string>
 
+namespace simpson {
+
 struct IStorageWrite : PolymorphicBaseClass
 {
     // Extractors
@@ -22,3 +24,5 @@ struct IStorageWrite : PolymorphicBaseClass
     virtual IStorageWrite& operator<<(const std::string& obj) = 0;
     virtual IStorageWrite& operator<<(char const * obj) = 0;
 };
+
+}

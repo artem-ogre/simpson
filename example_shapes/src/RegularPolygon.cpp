@@ -6,6 +6,8 @@
 #include <assert.h>
 #include <stdexcept>
 
+using namespace simpson;
+
 const std::runtime_error notEnoughSidesException("Number of sides for regular polygon should be at least 3");
 
 RegularPolygon::RegularPolygon(

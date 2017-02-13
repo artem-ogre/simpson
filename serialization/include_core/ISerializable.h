@@ -6,6 +6,7 @@
 #include <memory>
 #include <string>
 
+namespace simpson {
 struct IStorageRead;
 struct IStorageWrite;
 
@@ -18,8 +19,9 @@ struct ISerializable : PolymorphicBaseClass
     virtual void deserialize(IStorageRead& inStream) = 0;        // SERIALIZABLE_TYPE generates overriding declaration
     //! returns serializable object's class name
     virtual std::string getClassName() const = 0;           // SERIALIZABLE_TYPE generates overriding declaration
-                                                            // REGISTER_SERIALIZABLE_TYPE generate implementation
+    // REGISTER_SERIALIZABLE_TYPE generate implementation
 };
 
 using ISerializableUniquePtr = std::unique_ptr<ISerializable>;
 using ISerializableSharedPtr = std::shared_ptr<ISerializable>;
+}
