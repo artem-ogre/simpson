@@ -2,7 +2,7 @@
 
 using namespace simpson;
 
-REGISTER_A_SERIALIZABLE_TYPE(EquilateralTriangle)
+SIMPSON_REGISTER_A_SERIALIZABLE_TYPE(EquilateralTriangle)
 
 EquilateralTriangle::EquilateralTriangle(const ShapePos2D& centroid, const shape_t& radius)
     : RegularPolygon(centroid, radius, 3)

@@ -7,7 +7,7 @@ using namespace simpson;
 
 const std::runtime_error negativeDimension("The rectangle dimensions should be non-negative");
 
-REGISTER_A_SERIALIZABLE_TYPE(Rectangle)
+SIMPSON_REGISTER_A_SERIALIZABLE_TYPE(Rectangle)
 
 Rectangle::Rectangle(const ShapePos2D& centroid, const shape_t& width, const shape_t& height)
     : Shape(centroid)

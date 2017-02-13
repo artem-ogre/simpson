@@ -4,7 +4,7 @@
 
 class Rectangle : public Shape
 {
-    IS_A_SERIALIZABLE_TYPE
+    SIMPSON_IS_A_SERIALIZABLE_TYPE
 public:
     Rectangle();
     Rectangle(const ShapePos2D& centroid, const shape_t& width, const shape_t& height);
