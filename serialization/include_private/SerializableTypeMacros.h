@@ -1,8 +1,6 @@
 #pragma once
 
-/*!
-*  Macro must be inserted in the beginning of the class declaration in order for the type to be serializable
-*/
+///Macro must be inserted in the beginning of the class declaration in order for the type to be serializable
 #define IS_A_SERIALIZABLE_TYPE                                                                               \
     public:                                                                                                  \
         virtual std::string getClassName() const override;                                                   \
