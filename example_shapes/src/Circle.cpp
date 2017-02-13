@@ -26,15 +26,15 @@ Circle::Circle()
 
 shape_t Circle::getArea() const { return M_PI * m_radius * m_radius; }
 
-void Circle::saveTo(IStorageWrite& outStream) const
+void Circle::serialize(IStorageWrite& outStream) const
 {
-    Shape::saveTo(outStream);
-    outStream << " " << m_radius;
+    Shape::serialize(outStream);
+    outStream << m_radius;
 }
 
-void Circle::loadFrom(IStorageRead& inStream)
+void Circle::deserialize(IStorageRead& inStream)
 {
-    Shape::loadFrom(inStream);
+    Shape::deserialize(inStream);
     inStream >> m_radius;
 }
 

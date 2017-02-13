@@ -29,8 +29,6 @@ void writeToFile(const StreamablePtrs &shapes, const char *fileName)
     }
     for(size_t i = 0; i < shapes.size(); ++i)
     {
-        if(i > 0)
-            outFile << "\n";
         outFile << *shapes[i];
     }
     outFile.close();

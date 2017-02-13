@@ -6,7 +6,7 @@
 
 struct StorageReadStream : IStorageRead
 {
-    StorageReadStream(std::istream &inStream);
+    explicit StorageReadStream(std::istream &inStream);
     // IStorageIn interface
     virtual IStorageRead &operator>>(bool &obj);
     virtual IStorageRead &operator>>(short &obj);

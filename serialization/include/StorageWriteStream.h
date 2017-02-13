@@ -6,7 +6,7 @@
 
 struct StorageWriteStream : IStorageWrite
 {
-    StorageWriteStream(std::ostream &outStream);
+    explicit StorageWriteStream(std::ostream &outStream);
     // IStorageIn interface
     virtual IStorageWrite &operator<<(bool &obj) override;
     virtual IStorageWrite &operator<<(short &obj) override;

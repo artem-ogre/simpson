@@ -17,8 +17,8 @@ public:
     void moveCentroid(const ShapePos2D& offset);
     virtual shape_t getArea() const = 0;
     // IStreamable
-    virtual void saveTo(IStorageWrite& outStream) const override;
-    virtual void loadFrom(IStorageRead& inStream) override;
+    virtual void serialize(IStorageWrite& outStream) const override;
+    virtual void deserialize(IStorageRead& inStream) override;
 
 protected:
     ShapePos2D m_centroid;

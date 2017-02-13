@@ -10,7 +10,7 @@ template <typename TStorageRead>
 class Deserializer : public IDeserializer
 {
 public:
-    Deserializer(std::istream& inStream);
+    explicit Deserializer(std::istream& inStream);
     // IDeserializer interface
     virtual ISerializable* deserialize() override;
 

@@ -39,14 +39,14 @@ const shape_t& Rectangle::getWidth() const { return m_width; }
 
 const shape_t& Rectangle::getHeight() const { return m_height; }
 
-void Rectangle::saveTo(IStorageWrite& outStream) const
+void Rectangle::serialize(IStorageWrite& outStream) const
 {
-    Shape::saveTo(outStream);
-    outStream << " " << m_width << " " << m_height;
+    Shape::serialize(outStream);
+    outStream << m_width << m_height;
 }
 
-void Rectangle::loadFrom(IStorageRead& inStream)
+void Rectangle::deserialize(IStorageRead& inStream)
 {
-    Shape::loadFrom(inStream);
+    Shape::deserialize(inStream);
     inStream >> m_width >> m_height;
 }

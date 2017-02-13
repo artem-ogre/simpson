@@ -10,7 +10,7 @@ template <typename TStorageWrite>
 class Serializer : public ISerializer
 {
 public:
-    Serializer(std::ostream& outStream);
+    explicit Serializer(std::ostream& outStream);
     // ISerializer interface
     virtual void serialize(ISerializable* obj) override;
 

@@ -13,9 +13,9 @@ struct IStorageWrite;
 struct ISerializable : PolymorphicBaseClass
 {
     //! writes object to a stream
-    virtual void saveTo(IStorageWrite& outStream) const = 0;  // SERIALIZABLE_TYPE generates overriding declaration
+    virtual void serialize(IStorageWrite& outStream) const = 0; // SERIALIZABLE_TYPE generates overriding declaration
     //! reads object from a stream
-    virtual void loadFrom(IStorageRead& inStream) = 0;        // SERIALIZABLE_TYPE generates overriding declaration
+    virtual void deserialize(IStorageRead& inStream) = 0;        // SERIALIZABLE_TYPE generates overriding declaration
     //! returns serializable object's class name
     virtual std::string getClassName() const = 0;           // SERIALIZABLE_TYPE generates overriding declaration
                                                             // REGISTER_SERIALIZABLE_TYPE generate implementation
