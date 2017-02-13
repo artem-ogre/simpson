@@ -6,10 +6,12 @@ namespace simpson {
 
 struct ISerializable;
 
-//! \brief Interface for serializable object serializer
+/// Interface for serializable object serializer.
 struct ISerializer : PolymorphicBaseClass
 {
+    /// \brief Serializes a provided serializable object.
+    /// \param obj an object to be serialized
     virtual void serialize(ISerializable* obj) = 0;
 };
 
-}
+} // simpson

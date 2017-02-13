@@ -10,18 +10,23 @@ namespace simpson {
 struct IStorageRead;
 struct IStorageWrite;
 
-//!  Interface for the serializable type.
+///  Interface for the serializable type.
 struct ISerializable : PolymorphicBaseClass
 {
-    //! writes object to a stream
+    /// Writes itself to a write storage
     virtual void serialize(IStorageWrite& outStream) const = 0; // SERIALIZABLE_TYPE generates overriding declaration
-    //! reads object from a stream
+    /// Reads itself from a read storage
     virtual void deserialize(IStorageRead& inStream) = 0;        // SERIALIZABLE_TYPE generates overriding declaration
-    //! returns serializable object's class name
+
+    /// Gets a string containing class name which is used as a unique identifier for the polymorphic serialization
+    /// \return serializable object's class name
     virtual std::string getClassName() const = 0;           // SERIALIZABLE_TYPE generates overriding declaration
-    // REGISTER_SERIALIZABLE_TYPE generate implementation
+                                                            // REGISTER_SERIALIZABLE_TYPE generate implementation
 };
 
+/// unique_ptr to ISerializable
 using ISerializableUniquePtr = std::unique_ptr<ISerializable>;
+/// shared_ptr to ISerializable
 using ISerializableSharedPtr = std::shared_ptr<ISerializable>;
-}
+
+} // simpson

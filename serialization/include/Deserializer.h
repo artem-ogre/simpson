@@ -7,7 +7,7 @@
 namespace simpson
 {
 
-//! \brief Deserializes a serializable object using a provided storage read class
+//! \brief Deserializes a serializable object using a provided storage read class.
 //! \tparam TStorageRead storage type used for deserialization
 template <typename TStorageRead>
 class Deserializer : public IDeserializer
@@ -21,6 +21,6 @@ private:
     TStorageRead m_storage;
 };
 
-} // namespace simpson
+} // simpson
 
 #include "Deserializer.tpp"

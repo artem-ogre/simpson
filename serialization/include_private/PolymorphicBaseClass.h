@@ -13,4 +13,4 @@ struct PolymorphicBaseClass
     PolymorphicBaseClass& operator=(PolymorphicBaseClass&&) = default;
 };
 
-}
+} // simpson

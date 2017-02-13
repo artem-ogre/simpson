@@ -4,10 +4,9 @@
 
 #include <iostream>
 
-namespace simpson
-{
+namespace simpson {
 
-//! \brief Serializes a serializable object using a provided storage write class
+//! \brief Serializes a serializable object using a provided storage write class.
 //! \tparam TStorageWrite storage type used for serialization
 template <typename TStorageWrite>
 class Serializer : public ISerializer
@@ -21,6 +20,6 @@ private:
     TStorageWrite m_storage;
 };
 
-}
+} // simpson
 
 #include "Serializer.tpp"
