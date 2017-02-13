@@ -3,7 +3,7 @@
 /*!
 *  Macro must be inserted in the beginning of the class declaration in order for the type to be serializable
 */
-#define SERIALIZABLE_TYPE                                                                                    \
+#define IS_A_SERIALIZABLE_TYPE                                                                               \
     public:                                                                                                  \
         virtual std::string getClassName() const override;                                                   \
         virtual void serialize(IStorageWrite& outStream) const override;                                     \
@@ -14,7 +14,7 @@
 *   and defines a getClassName function returning serializable type name.
 *   Must be inserted in the implementation file.
 */
-#define REGISTER_SERIALIZABLE_TYPE(type_name)                                                                \
+#define REGISTER_A_SERIALIZABLE_TYPE(type_name)                                                              \
     struct type_name##Factory : ISerializableFactory                                                         \
     {                                                                                                        \
         type_name##Factory() { SerializationUtilities::registerType(#type_name, this); }                     \

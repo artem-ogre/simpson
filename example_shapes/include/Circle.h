@@ -4,7 +4,7 @@
 
 class Circle : public Shape
 {
-    SERIALIZABLE_TYPE
+    IS_A_SERIALIZABLE_TYPE
 public:
     Circle();
     Circle(const ShapePos2D& centroid, const shape_t& radius);

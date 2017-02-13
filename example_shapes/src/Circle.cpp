@@ -11,7 +11,7 @@
 
 const std::runtime_error negativeRadius("The radius should be non-negative");
 
-REGISTER_SERIALIZABLE_TYPE(Circle)
+REGISTER_A_SERIALIZABLE_TYPE(Circle)
 
 Circle::Circle(const ShapePos2D& centroid, const shape_t& radius)
     : Shape(centroid)
