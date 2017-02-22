@@ -16,10 +16,10 @@ struct Point2D : ISerializable
 public:
     virtual void serialize(IStorageWrite &outStream) const override { outStream << x << y; }
     virtual void deserialize(IStorageRead &inStream) override { inStream >> x >> y; }
-    virtual std::string getClassName() const override { return SIMPLE_TYPE_NAME(Point2D); } // should be the same with SIMPSON_REGISTER_TYPE!
+    virtual std::string getClassName() const override; // defined in SIMPSON_REGISTER_NONTEMPLATE_TYPE
 };
 
-SIMPSON_REGISTER_SIMPLE_TYPE(Point2D)
+SIMPSON_REGISTER_NONTEMPLATE_TYPE(Point2D)
 
 int main(int argc, char *argv[])
 {
@@ -44,3 +44,5 @@ int main(int argc, char *argv[])
     }
     std::cout << p2d << std::endl;
 }
+
+

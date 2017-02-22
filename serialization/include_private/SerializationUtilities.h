@@ -10,9 +10,6 @@ namespace simpson {
 struct ISerializableFactory;
 struct ISerializable;
 
-template <typename T>
-struct TypeName {};
-
 namespace SerializationUtilities {
 
 /// Registers a new serializable type with its class name and a factory.

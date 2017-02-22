@@ -6,25 +6,32 @@
 
 #pragma once
 
-#define __SIMPSON_ENABLE_TYPE_NAME(type_name)                                                                \
+namespace simpson
+{
+template <typename T> struct RegisteredTypes {};
+}
+
+#define SIMPSON_PRIVATE_ENABLE_TYPE_NAME(type_name)                                                          \
     namespace simpson                                                                                        \
     {                                                                                                        \
     template <>                                                                                              \
-    struct TypeName<type_name>                                                                               \
+    struct RegisteredTypes<type_name>                                                                        \
     {                                                                                                        \
-        static const char* Get() { return #type_name; }                                                      \
+        static constexpr const char* name = #type_name;                                                      \
     };                                                                                                       \
     }
 
-#define __SIMPSON_REGISTER_TYPE(type_name)                                                                   \
+#define SIMPSON_PRIVATE_REGISTER_TYPE(type_name)                                                             \
     static SerializableFactory<type_name> global_##type_name##Factory(#type_name);
 
-#define SIMPLE_TYPE_NAME(type_name) #type_name
+#define SIMPSON_PRIVATE_DEFINE_GET_CLASS_NAME(type_name)                                                     \
+    std::string type_name::getClassName() const { return RegisteredTypes<type_name>::name; }
 
-#define TEMPLATED_TYPE_NAME(type_name) TypeName<type_name>::Get()
+#define SIMPSON_REGISTER_TEMPLATE_TYPE_ALIAS(type_name)                                                      \
+    SIMPSON_PRIVATE_REGISTER_TYPE(type_name)                                                                 \
+    SIMPSON_PRIVATE_ENABLE_TYPE_NAME(type_name)
 
-#define SIMPSON_REGISTER_SIMPLE_TYPE(type_name) __SIMPSON_REGISTER_TYPE(type_name)
-
-#define SIMPSON_REGISTER_TEMPLATED_TYPE_ALIAS(type_name)                                                           \
-    __SIMPSON_REGISTER_TYPE(type_name)                                                                       \
-    __SIMPSON_ENABLE_TYPE_NAME(type_name)
+#define SIMPSON_REGISTER_NONTEMPLATE_TYPE(type_name)                                                         \
+    SIMPSON_PRIVATE_REGISTER_TYPE(type_name)                                                                 \
+    SIMPSON_PRIVATE_ENABLE_TYPE_NAME(type_name)                                                              \
+    SIMPSON_PRIVATE_DEFINE_GET_CLASS_NAME(type_name)

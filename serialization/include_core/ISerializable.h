@@ -7,6 +7,7 @@
 #include <string>
 
 namespace simpson {
+
 struct IStorageRead;
 struct IStorageWrite;
 
@@ -14,14 +15,14 @@ struct IStorageWrite;
 struct ISerializable : PolymorphicBaseClass
 {
     /// Writes itself to a write storage
-    virtual void serialize(IStorageWrite& outStream) const = 0; // SERIALIZABLE_TYPE generates overriding declaration
+    virtual void serialize(IStorageWrite& outStream) const = 0;
     /// Reads itself from a read storage
-    virtual void deserialize(IStorageRead& inStream) = 0;        // SERIALIZABLE_TYPE generates overriding declaration
+    virtual void deserialize(IStorageRead& inStream) = 0;
 
-    /// Gets a string containing class name which is used as a unique identifier for the polymorphic serialization
+    /// Gets a string containing class name which is used
+    /// as a unique identifier for the polymorphic serialization
     /// \return serializable object's class name
-    virtual std::string getClassName() const = 0;           // SERIALIZABLE_TYPE generates overriding declaration
-                                                            // REGISTER_SERIALIZABLE_TYPE generate implementation
+    virtual std::string getClassName() const = 0;
 };
 
 /// unique_ptr to ISerializable
