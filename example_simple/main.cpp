@@ -8,6 +8,8 @@
 
 using namespace simpson;
 
+
+
 struct Point2D : ISerializable
 {
     float x;
@@ -16,10 +18,11 @@ struct Point2D : ISerializable
 public:
     virtual void serialize(IStorageWrite &outStream) const override { outStream << x << y; }
     virtual void deserialize(IStorageRead &inStream) override { inStream >> x >> y; }
-    virtual std::string getClassName() const override; // defined in SIMPSON_REGISTER_NONTEMPLATE_TYPE
+    virtual std::string getClassName() const override;
 };
 
-SIMPSON_REGISTER_NONTEMPLATE_TYPE(Point2D)
+SIMPSON_REGISTER_TYPE(Point2D)
+std::string Point2D::getClassName() const { return RegisteredTypes<Point2D>::name; }
 
 int main(int argc, char *argv[])
 {
@@ -44,5 +47,3 @@ int main(int argc, char *argv[])
     }
     std::cout << p2d << std::endl;
 }
-
-
