@@ -6,22 +6,25 @@
 
 #pragma once
 
-/// Macro must be inserted in the beginning of the class declaration in order for the type to be serializable
-#define SIMPSON_IS_A_SERIALIZABLE_TYPE                                                                       \
-public:                                                                                                      \
-    virtual std::string getClassName() const override;                                                       \
-    virtual void serialize(simpson::IStorageWrite& outStream) const override;                                \
-    virtual void deserialize(simpson::IStorageRead& inStream) override;                                      \
-                                                                                                             \
-private:
+#define __SIMPSON_ENABLE_TYPE_NAME(type_name)                                                                \
+    namespace simpson                                                                                        \
+    {                                                                                                        \
+    template <>                                                                                              \
+    struct TypeName<type_name>                                                                               \
+    {                                                                                                        \
+        static const char* Get() { return #type_name; }                                                      \
+    };                                                                                                       \
+    }
 
-/// Automatically generates a factory for the serializable type and defines a getClassName function returning
-/// serializable type name. Must be inserted in the implementation file.
-#define SIMPSON_REGISTER_A_SERIALIZABLE_TYPE(type_name)                                                  \
-struct type_name##Factory : simpson::ISerializableFactory                                                \
-{                                                                                                        \
-    type_name##Factory() { simpson::SerializationUtilities::registerType(#type_name, this); }            \
-    virtual simpson::ISerializable* create() const override { return new type_name; }                    \
-};                                                                                                       \
-static type_name##Factory global_##type_name##Factory;                                                   \
-std::string type_name::getClassName() const { return #type_name; }
+#define __SIMPSON_REGISTER_TYPE(type_name)                                                                   \
+    static SerializableFactory<type_name> global_##type_name##Factory(#type_name);
+
+#define SIMPLE_TYPE_NAME(type_name) #type_name
+
+#define TEMPLATED_TYPE_NAME(type_name) TypeName<type_name>::Get()
+
+#define SIMPSON_REGISTER_SIMPLE_TYPE(type_name) __SIMPSON_REGISTER_TYPE(type_name)
+
+#define SIMPSON_REGISTER_TEMPLATED_TYPE_ALIAS(type_name)                                                           \
+    __SIMPSON_REGISTER_TYPE(type_name)                                                                       \
+    __SIMPSON_ENABLE_TYPE_NAME(type_name)
