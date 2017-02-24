@@ -22,7 +22,7 @@ struct ISerializable : PolymorphicBaseClass
     /// Gets a string containing class name which is used
     /// as a unique identifier for the polymorphic serialization
     /// \return serializable object's class name
-    virtual std::string getClassName() const = 0;
+    virtual std::string typeName() const = 0;
 };
 
 /// unique_ptr to ISerializable

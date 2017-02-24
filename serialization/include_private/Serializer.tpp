@@ -14,7 +14,7 @@ Serializer<TStorageWrite>::Serializer(std::ostream& outStream)
 template <typename TStorageWrite>
 void Serializer<TStorageWrite>::serialize(ISerializable* obj)
 {
-    m_storage << obj->getClassName();
+    m_storage << obj->typeName();
     obj->serialize(m_storage);
 }
 

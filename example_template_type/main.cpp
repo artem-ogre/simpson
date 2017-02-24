@@ -18,7 +18,7 @@ protected:
     virtual void serialize(IStorageWrite &outStream) const override { outStream << x << y; }
     virtual void deserialize(IStorageRead &inStream) override { inStream >> x >> y; }
 private:
-    virtual std::string getClassName() const override;
+    virtual std::string typeName() const override;
 };
 
 template <typename TCoord>
@@ -39,7 +39,7 @@ private:
         Point2D<TCoord>::deserialize(inStream);
         inStream >> z;
     }
-    virtual std::string getClassName() const override;
+    virtual std::string typeName() const override;
 };
 
 using Point2DFloat = Point2D<float>; // defining an alias
@@ -47,12 +47,12 @@ using Point3DFloat = Point3D<float>; // defining an alias
 
 SIMPSON_REGISTER_TYPE_NAME(Point2D<float>)  // registering template specialization with alias name
 template<typename TCoord>
-std::string Point2D<TCoord>::getClassName() const { return RegisteredTypeNames<Point2D<TCoord>>::name; }
+std::string Point2D<TCoord>::typeName() const { return RegisteredTypeNames<Point2D<TCoord>>::name; }
 
 
 SIMPSON_REGISTER_TYPE_NAME(Point3D<float>)  // registering template specialization with alias name
 template<typename TCoord>
-std::string Point3D<TCoord>::getClassName() const { return RegisteredTypeNames<Point3D<TCoord>>::name; }
+std::string Point3D<TCoord>::typeName() const { return RegisteredTypeNames<Point3D<TCoord>>::name; }
 
 int main(int argc, char *argv[])
 {

@@ -16,7 +16,7 @@ struct Point2D : ISerializable
 public:
     virtual void serialize(IStorageWrite &outStream) const override { outStream << x << y; }
     virtual void deserialize(IStorageRead &inStream) override { inStream >> x >> y; }
-    virtual std::string getClassName() const override { return "point_2d"; }
+    virtual std::string typeName() const override { return "point_2d"; }
 };
 
 int main(int argc, char *argv[])

@@ -11,18 +11,19 @@ namespace simpson
 template <typename T> struct RegisteredTypeNames {};
 }
 
-#define SIMPSON_REGISTER_TYPE_NAME(type_name)                                                                \
+#define SIMPSON_REGISTER_TYPE_NAME(T)                                                                        \
     namespace simpson                                                                                        \
     {                                                                                                        \
     template <>                                                                                              \
-    struct RegisteredTypeNames<type_name>                                                                        \
+    struct RegisteredTypeNames<T>                                                                            \
     {                                                                                                        \
-        static constexpr const char* name = #type_name;                                                      \
+        static constexpr const char* name = #T;                                                              \
     };                                                                                                       \
     }
 
-#define SIMPSON_ADD_TYPE(T, type_name)                                                                  \
-    SerializationUtilities::registerType(type_name, SerializationUtilities::createSerializable<T>);
+#define SIMPSON_ADD_TYPE(T, typeName)                                                                        \
+    SerializationUtilities::registerType(typeName, SerializationUtilities::createSerializable<T>);
 
-#define SIMPSON_ADD_TYPE_WITH_REGISTERED_NAME(T)                                                                  \
-    SerializationUtilities::registerType(RegisteredTypeNames<T>::name, SerializationUtilities::createSerializable<T>);
+#define SIMPSON_ADD_TYPE_WITH_REGISTERED_NAME(T)                                                             \
+    SerializationUtilities::registerType(                                                                    \
+        RegisteredTypeNames<T>::name, SerializationUtilities::createSerializable<T>);
