@@ -25,7 +25,7 @@ std::string Point2D::typeName() const { return AutoTypeNames<Point2D>::name; }
 
 int main(int argc, char *argv[])
 {
-    SIMPSON_ADD_TYPE_WITH_REGISTERED_NAME(Point2D);
+    SIMPSON_ADD_TYPE_WITH_AUTO_TYPE_NAME(Point2D);
     Point2D p2d;
     p2d.x = 1.0f;
     p2d.y = 2.0f;

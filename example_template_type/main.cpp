@@ -57,8 +57,8 @@ std::string Point3D<TCoord>::typeName() const { return AutoTypeNames<Point3D<TCo
 
 int main(int argc, char *argv[])
 {
-    SIMPSON_ADD_TYPE_WITH_REGISTERED_NAME(Point2D<float>);
-    SIMPSON_ADD_TYPE_WITH_REGISTERED_NAME(Point3D<float>);
+    SIMPSON_ADD_TYPE_WITH_AUTO_TYPE_NAME(Point2D<float>);
+    SIMPSON_ADD_TYPE_WITH_AUTO_TYPE_NAME(Point3D<float>);
 
     Point2DFloat p2d;
     p2d.x = 1.0f;
