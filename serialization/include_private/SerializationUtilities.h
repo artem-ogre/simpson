@@ -19,11 +19,11 @@ using SerializableFactoryFunction = ISerializable* (*)();
 /// Registers a new serializable type with its class name and a factory.
 /// \param className name of the serializable type class
 /// \param factory serializable type factory
-void registerType(const std::string& className, SerializableFactoryFunction factoryFunction);
+void addType(const std::string& typeName, SerializableFactoryFunction factoryFunction);
 /// Creates a concrete serializable type by its class name.
 /// \param className name of the serializable type class
 /// \return serializable base pointer holding a concrete serializable type
-ISerializable* create(const std::string& className);
+ISerializable* create(const std::string& typeName);
 
 } // SerializationUtilities
 } // simpson
