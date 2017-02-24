@@ -23,7 +23,7 @@ void addType(const std::string& typeName, SerializableFactoryFunction factoryFun
 /// Creates a concrete serializable type by its class name.
 /// \param className name of the serializable type class
 /// \return serializable base pointer holding a concrete serializable type
-ISerializable* create(const std::string& typeName);
+ISerializable* createByTypeName(const std::string& typeName);
 
 } // SerializationUtilities
 } // simpson

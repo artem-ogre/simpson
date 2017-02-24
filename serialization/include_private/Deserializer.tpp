@@ -16,7 +16,7 @@ ISerializable* Deserializer<TStorageRead>::deserialize()
 {
     std::string typeName;
     m_storage >> typeName;
-    ISerializable* result = SerializationUtilities::create(typeName);
+    ISerializable* result = SerializationUtilities::createByTypeName(typeName);
     result->deserialize(m_storage);
     return result;
 }

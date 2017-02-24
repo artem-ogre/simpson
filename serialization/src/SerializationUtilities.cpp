@@ -30,7 +30,7 @@ void SerializationUtilities::addType(
     factoryFunctionMap()[typeName] = factoryFunction;
 }
 
-ISerializable *SerializationUtilities::create(const std::string &typeName)
+ISerializable *SerializationUtilities::createByTypeName(const std::string &typeName)
 {
     auto search = factoryFunctionMap().find(typeName);
     if(search == factoryFunctionMap().end())
