@@ -11,11 +11,11 @@ struct ISerializable;
 
 namespace SerializationUtilities {
 
-template <typename T>
-ISerializable* createSerializable() { return new T; }
-
 using SerializableFactoryFunction = ISerializable* (*)();
 
+/// Creates a concrete serializable type provided as a template parameter
+template <typename T>
+ISerializable* createSerializable() { return new T; }
 /// Registers a new serializable type with its type name and a factory function.
 /// \param typeName name of the serializable type class
 /// \param factory serializable type factory
