@@ -8,14 +8,14 @@
 
 namespace simpson
 {
-template <typename T> struct RegisteredTypeNames {};
+template <typename T> struct AutoTypeNames {};
 }
 
-#define SIMPSON_REGISTER_TYPE_NAME(T)                                                                        \
+#define SIMPSON_REGISTER_AUTO_TYPE_NAME(T)                                                                        \
     namespace simpson                                                                                        \
     {                                                                                                        \
     template <>                                                                                              \
-    struct RegisteredTypeNames<T>                                                                            \
+    struct AutoTypeNames<T>                                                                            \
     {                                                                                                        \
         static constexpr const char* name = #T;                                                              \
     };                                                                                                       \
@@ -26,4 +26,4 @@ template <typename T> struct RegisteredTypeNames {};
 
 #define SIMPSON_ADD_TYPE_WITH_REGISTERED_NAME(T)                                                             \
     SerializationUtilities::registerType(                                                                    \
-        RegisteredTypeNames<T>::name, SerializationUtilities::createSerializable<T>);
+        AutoTypeNames<T>::name, SerializationUtilities::createSerializable<T>);

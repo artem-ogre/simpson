@@ -12,15 +12,16 @@ struct Point2D : ISerializable
 {
     float x;
     float y;
+
     // ISerializable interface
-public:
+private:
     virtual void serialize(IStorageWrite &outStream) const override { outStream << x << y; }
     virtual void deserialize(IStorageRead &inStream) override { inStream >> x >> y; }
     virtual std::string typeName() const override;
 };
 
-SIMPSON_REGISTER_TYPE_NAME(Point2D)
-std::string Point2D::typeName() const { return RegisteredTypeNames<Point2D>::name; }
+SIMPSON_REGISTER_AUTO_TYPE_NAME(Point2D)
+std::string Point2D::typeName() const { return AutoTypeNames<Point2D>::name; }
 
 int main(int argc, char *argv[])
 {
