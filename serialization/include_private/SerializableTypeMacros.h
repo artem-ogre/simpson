@@ -8,21 +8,21 @@
 
 namespace simpson
 {
-template <typename T> struct RegisteredTypes {};
+template <typename T> struct RegisteredTypeNames {};
 }
 
 #define SIMPSON_REGISTER_TYPE_NAME(type_name)                                                                \
     namespace simpson                                                                                        \
     {                                                                                                        \
     template <>                                                                                              \
-    struct RegisteredTypes<type_name>                                                                        \
+    struct RegisteredTypeNames<type_name>                                                                        \
     {                                                                                                        \
         static constexpr const char* name = #type_name;                                                      \
     };                                                                                                       \
     }
 
-#define SIMPSON_TYPE_NAME(type_name)                                                                         \
-    virtual std::string getClassName() const override { return RegisteredTypes<type_name>::name; };
+#define SIMPSON_ADD_TYPE(T, type_name)                                                                  \
+    SerializationUtilities::registerType(type_name, SerializationUtilities::createSerializable<T>);
 
-#define SIMPSON_ADD_TYPE_FACTORY_FUNCTION(type_name)                                                                  \
-    SerializationUtilities::registerType(RegisteredTypes<type_name>::name, SerializationUtilities::createSerializable<type_name>);
+#define SIMPSON_ADD_TYPE_WITH_REGISTERED_NAME(T)                                                                  \
+    SerializationUtilities::registerType(RegisteredTypeNames<T>::name, SerializationUtilities::createSerializable<T>);

@@ -3,5 +3,6 @@ project(shapes_serialization)
 
 add_subdirectory (serialization)
 add_subdirectory (example_simple)
+add_subdirectory (example_simple_register_name)
 add_subdirectory (example_template_type)
 #add_subdirectory (example_shapes)

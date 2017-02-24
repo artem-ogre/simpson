@@ -16,12 +16,15 @@ struct Point2D : ISerializable
 public:
     virtual void serialize(IStorageWrite &outStream) const override { outStream << x << y; }
     virtual void deserialize(IStorageRead &inStream) override { inStream >> x >> y; }
-    virtual std::string getClassName() const override { return "point_2d"; }
+    virtual std::string getClassName() const override;
 };
+
+SIMPSON_REGISTER_TYPE_NAME(Point2D)
+std::string Point2D::getClassName() const { return RegisteredTypeNames<Point2D>::name; }
 
 int main(int argc, char *argv[])
 {
-    SIMPSON_ADD_TYPE(Point2D, "point_2d");
+    SIMPSON_ADD_TYPE_WITH_REGISTERED_NAME(Point2D);
     Point2D p2d;
     p2d.x = 1.0f;
     p2d.y = 2.0f;
