@@ -10,6 +10,5 @@
 #pragma once
 
 #include "ISerializable.h"
-#include "ISerializableFactory.h"
 #include "SerializableTypeMacros.h"
 #include "SerializationUtilities.h"

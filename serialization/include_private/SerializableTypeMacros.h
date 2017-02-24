@@ -11,15 +11,7 @@ namespace simpson
 template <typename T> struct RegisteredTypes {};
 }
 
-#define SIMPSON_REGISTER_TYPE(type_name)                                                                     \
-    SIMPSON_PRIVATE_CREATE_FACTORY_FOR_TYPE(type_name)                                                       \
-    SIMPSON_PRIVATE_REGISTER_TYPE_NAME(type_name)
-
-
-#define SIMPSON_PRIVATE_CREATE_FACTORY_FOR_TYPE(type_name)                                                   \
-    static SerializableFactory<type_name> global_##type_name##Factory(#type_name);
-
-#define SIMPSON_PRIVATE_REGISTER_TYPE_NAME(type_name)                                                        \
+#define SIMPSON_REGISTER_TYPE_NAME(type_name)                                                                \
     namespace simpson                                                                                        \
     {                                                                                                        \
     template <>                                                                                              \
@@ -28,3 +20,9 @@ template <typename T> struct RegisteredTypes {};
         static constexpr const char* name = #type_name;                                                      \
     };                                                                                                       \
     }
+
+#define SIMPSON_TYPE_NAME(type_name)                                                                         \
+    virtual std::string getClassName() const override { return RegisteredTypes<type_name>::name; };
+
+#define SIMPSON_ADD_TYPE_FACTORY_FUNCTION(type_name)                                                                  \
+    SerializationUtilities::registerType(RegisteredTypes<type_name>::name, SerializationUtilities::createSerializable<type_name>);
