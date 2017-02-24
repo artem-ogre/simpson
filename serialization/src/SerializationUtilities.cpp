@@ -20,7 +20,7 @@ FactoryFunctionMap &factoryFunctionMap()
 
 } // namespace
 
-void SerializationUtilities::addType(
+void SerializationUtilities::addTypeFactoryFunction(
     const std::string &typeName,
     SerializableFactoryFunction factoryFunction)
 {

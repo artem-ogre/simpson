@@ -22,8 +22,8 @@ template <typename T> struct AutoTypeNames {};
     }
 
 #define SIMPSON_ADD_TYPE(T, typeName)                                                                        \
-    SerializationUtilities::addType(typeName, SerializationUtilities::createSerializable<T>);
+    SerializationUtilities::addTypeFactoryFunction(typeName, SerializationUtilities::createSerializable<T>);
 
 #define SIMPSON_ADD_TYPE_WITH_AUTO_TYPE_NAME(T)                                                              \
-    SerializationUtilities::addType(                                                                    \
+    SerializationUtilities::addTypeFactoryFunction(                                                          \
         AutoTypeNames<T>::name, SerializationUtilities::createSerializable<T>);
