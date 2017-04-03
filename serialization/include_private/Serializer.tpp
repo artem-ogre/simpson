@@ -1,8 +1,9 @@
 #pragma once
 
 #include "ISerializable.h"
-#include "Serializer.h"
+#include "IStorage.h"
 #include "SerializationUtilities.h"
+#include "Serializer.h"
 
 namespace simpson
 {
@@ -21,17 +22,19 @@ template <typename TStorage>
 void Serializer<TStorage>::serialize(ISerializable* obj)
 {
     std::string typeName = obj->typeName();
-    m_storage | typeName;
-    obj->serialize(m_storage);
+    IStorage & storageRef = m_storage;
+    storageRef | typeName;
+    obj->serialize(storageRef);
 }
 
 template <typename TStorage>
 ISerializable* Serializer<TStorage>::deserialize()
 {
     std::string typeName;
-    m_storage | typeName;
+    IStorage & storageRef = m_storage;
+    storageRef | typeName;
     ISerializable* serializable = SerializationUtilities::createByTypeName(typeName);
-    serializable->serialize(m_storage);
+    serializable->serialize(storageRef);
     return serializable;
 }
 

@@ -3,6 +3,7 @@
 #include "PolymorphicBaseClass.h"
 
 #include <string>
+#include <memory>
 
 namespace simpson {
 

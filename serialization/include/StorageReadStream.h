@@ -4,14 +4,17 @@
 
 #include <iostream>
 
-namespace simpson {
+namespace simpson
+{
 
 /// Implementation of storage that reads serialized data from istream.
-struct StorageReadStream : IStorage
+struct StorageReadStream final : IStorage
 {
     /// \brief Constructor.
     /// \param inStream istream that the storage uses.
     explicit StorageReadStream(std::istream &inStream);
+
+private:
     // IStorageIn interface
     virtual IStorage &operator|(bool &obj) override;           ///< Read bool from istream.
     virtual IStorage &operator|(short &obj) override;          ///< Read short from istream.
