@@ -8,7 +8,7 @@ namespace simpson
 {
 
 /// Implementation of storage that reads serialized data from istream.
-struct StorageReadStream : IStorage
+struct StorageReadStream final : IStorage
 {
     /// \brief Constructor.
     /// \param inStream istream that the storage uses.
