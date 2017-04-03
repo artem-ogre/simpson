@@ -20,9 +20,10 @@ private:
     virtual std::string typeName() const override { return "point_2d"; }
 };
 
+SIMPSON_REGISTER_TYPE_WITH_NAME(Point2D, "point_2d")
+
 int main(int argc, char *argv[])
 {
-    SIMPSON_ADD_TYPE(Point2D, "point_2d");
     Point2D p2d;
     p2d.x = 1.0f;
     p2d.y = 2.0f;
