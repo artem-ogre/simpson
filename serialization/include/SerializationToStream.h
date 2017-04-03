@@ -2,8 +2,6 @@
 /// \brief This header contains functionality needed for serializing and deserealizing to/from a stream
 #pragma once
 
-#include "IStorage.h"
-
 #include <iostream>
 
 /// Contains all the functionality provided by the library.
