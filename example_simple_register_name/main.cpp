@@ -13,8 +13,8 @@ struct Point2D final : ISerializable
     float x;
     float y;
 
-    // ISerializable interface
 private:
+    // ISerializable interface
     virtual void serialize(IStorage &storage) override
     {
         storage | x | y;
@@ -23,7 +23,10 @@ private:
 };
 
 SIMPSON_REGISTER_TYPE(Point2D)
-std::string Point2D::typeName() const { return AutoTypeNames<Point2D>::name; }
+std::string Point2D::typeName() const
+{
+    return AutoTypeNames<Point2D>::name;
+}
 
 int main(int argc, char *argv[])
 {

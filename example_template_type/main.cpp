@@ -16,9 +16,9 @@ struct Point2D : ISerializable
 
 protected:
     // ISerializable interface
-    virtual void serialize(IStorage &outStream) override
+    virtual void serialize(IStorage &storage) override
     {
-        outStream | x | y;
+        storage | x | y;
     }
 
 private:
@@ -32,10 +32,10 @@ struct Point3D final : Point2D<TCoord>
 
 private:
     // ISerializable interface
-    virtual void serialize(IStorage &outStream) override
+    virtual void serialize(IStorage &storage) override
     {
-        Point2D<TCoord>::serialize(outStream);
-        outStream | z;
+        Point2D<TCoord>::serialize(storage);
+        storage | z;
     }
 
     virtual std::string typeName() const override;

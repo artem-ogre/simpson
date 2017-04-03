@@ -15,11 +15,14 @@ struct Point2D final : ISerializable
 
     // ISerializable interface
 private:
-    virtual void serialize(IStorage &outStream) override
+    virtual void serialize(IStorage &storage) override
     {
-        outStream | x | y;
+        storage | x | y;
     }
-    virtual std::string typeName() const override { return "point_2d"; }
+    virtual std::string typeName() const override
+    {
+        return "point_2d";
+    }
 };
 
 SIMPSON_REGISTER_TYPE_WITH_NAME(Point2D, "point_2d")
