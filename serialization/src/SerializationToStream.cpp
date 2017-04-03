@@ -10,6 +10,7 @@ std::ostream& operator<<(std::ostream& outStream, ISerializable& obj)
 
 std::istream& operator>>(std::istream& inStream, ISerializable* obj)
 {
-    obj = StreamDeserializer(inStream).deserialize();
+    StreamDeserializer serializer(inStream);
+    obj = serializer.deserialize();
     return inStream;
 }

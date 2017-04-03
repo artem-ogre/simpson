@@ -3,7 +3,6 @@
 #pragma once
 
 #include "Serializer.h"
-#include "Deserializer.h"
 #include "StorageReadStream.h"
 #include "StorageWriteStream.h"
 
@@ -13,7 +12,7 @@ namespace simpson {
 /// Serializer able to serialize to ostream
 using StreamSerializer = Serializer<StorageWriteStream>;
 /// Deserializer able to deserialize from istream
-using StreamDeserializer = Deserializer<StorageReadStream>;
+using StreamDeserializer = Serializer<StorageReadStream>;
 
 } // simpson
 
