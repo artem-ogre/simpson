@@ -7,10 +7,9 @@
 
 namespace simpson {
 
-/// Interface for storage used for reading serialized data.
+/// Interface for storage used for reading/writing serialized data.
 struct IStorage : PolymorphicBaseClass
 {
-    // Extractors
     virtual IStorage& operator|(bool& obj) = 0;            ///< Read bool from storage.
     virtual IStorage& operator|(short& obj) = 0;           ///< Read short from storage.
     virtual IStorage& operator|(unsigned short& obj) = 0;  ///< Read unsigned short from storage.
