@@ -1,27 +1,26 @@
 #include "SerializationToStream.h"
 
+#include "StorageReadStream.h"
+#include "StorageWriteStream.h"
+#include "StreamDeserializer.h"
+#include "StreamSerializer.h"
+
 #include <memory>
 
 using namespace simpson;
 
-namespace
-{
-/// Serializer able to serialize to ostream
-using StreamSerializer = Serializer<StorageWriteStream>;
-/// Deserializer able to deserialize from istream
-using StreamDeserializer = Serializer<StorageReadStream>;
-}
-
 std::ostream& simpson::operator<<(std::ostream& outStream, ISerializable& obj)
 {
-    std::unique_ptr<ISerializer> serializer = std::make_unique<StreamSerializer>(outStream);
+    using StreamWrite = StreamSerializer<StorageWriteStream>;
+    std::unique_ptr<ISerializer> serializer = std::make_unique<StreamWrite>(outStream);
     serializer->serialize(&obj);
     return outStream;
 }
 
 std::istream& simpson::operator>>(std::istream& inStream, ISerializable* obj)
 {
-    std::unique_ptr<ISerializer> serializer = std::make_unique<StreamDeserializer>(inStream);
+    using StreamRead = StreamDeserializer<StorageReadStream>;
+    std::unique_ptr<ISerializer> serializer = std::make_unique<StreamRead>(inStream);
     obj = serializer->deserialize();
     return inStream;
 }

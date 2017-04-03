@@ -15,7 +15,10 @@ struct Point2D final : ISerializable
 
     // ISerializable interface
 private:
-    virtual void serialize(IStorage &outStream) override { outStream | x | y; }
+    virtual void serialize(IStorage &outStream) override
+    {
+        outStream | x | y;
+    }
     virtual std::string typeName() const override { return "point_2d"; }
 };
 

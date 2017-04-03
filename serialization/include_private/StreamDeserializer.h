@@ -9,12 +9,11 @@ namespace simpson
 
 //! \brief Serializes a serializable object using a provided storage write class.
 //! \tparam TStorageWrite storage type used for serialization
-template <typename TStorage>
-class Serializer final : public ISerializer
+template <typename TStreamStorage>
+class StreamDeserializer final : public ISerializer
 {
 public:
-    explicit Serializer(std::ostream& outStream);
-    explicit Serializer(std::istream& inStream);
+    explicit StreamDeserializer(std::istream& inStream);
 
 private:
     // ISerializer interface
@@ -22,9 +21,9 @@ private:
     virtual ISerializable* deserialize() override;
 
 private:
-    TStorage m_storage;
+    TStreamStorage m_storage;
 };
 
 } // simpson
 
-#include "Serializer.tpp"
+#include "StreamDeserializer.tpp"
