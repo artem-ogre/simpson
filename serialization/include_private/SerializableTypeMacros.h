@@ -11,13 +11,13 @@ namespace simpson
 template <typename T> struct AutoTypeNames {};
 }
 
-#define SIMPSON_REGISTER_TYPE_NAME(T, typeName)                                                                   \
+#define SIMPSON_REGISTER_TYPE_NAME(T, typeName)                                                              \
     namespace simpson                                                                                        \
     {                                                                                                        \
     template <>                                                                                              \
     struct AutoTypeNames<T>                                                                                  \
     {                                                                                                        \
-        static constexpr const char* name = typeName;                                                              \
+        static constexpr const char* name = typeName;                                                        \
     };                                                                                                       \
     }
 
