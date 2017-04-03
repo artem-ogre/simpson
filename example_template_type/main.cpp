@@ -14,21 +14,24 @@ struct Point2D : ISerializable
     TCoord x;
     TCoord y;
 
-    // ISerializable interface
 protected:
-    virtual void serialize(IStorage &outStream) override { outStream | x | y; }
+    // ISerializable interface
+    virtual void serialize(IStorage &outStream) override
+    {
+        outStream | x | y;
+    }
+
 private:
     virtual std::string typeName() const override;
 };
 
 template <typename TCoord>
-struct Point3D : Point2D<TCoord>
+struct Point3D final : Point2D<TCoord>
 {
     TCoord z;
-    static ISerializable *create() { return new Point3D<TCoord>(); }
 
-    // ISerializable interface
 private:
+    // ISerializable interface
     virtual void serialize(IStorage &outStream) override
     {
         Point2D<TCoord>::serialize(outStream);
@@ -38,19 +41,24 @@ private:
     virtual std::string typeName() const override;
 };
 
-using Point2DFloat = Point2D<float>; // defining an alias
-using Point3DFloat = Point3D<float>; // defining an alias
+SIMPSON_REGISTER_TYPE(Point2D<float>) // registering template specialization with alias name
+template <typename TCoord>
+std::string Point2D<TCoord>::typeName() const
+{
+    return AutoTypeNames<Point2D<TCoord> >::name;
+}
 
-SIMPSON_REGISTER_TYPE(Point2D<float>)  // registering template specialization with alias name
-template<typename TCoord>
-std::string Point2D<TCoord>::typeName() const { return AutoTypeNames<Point2D<TCoord>>::name; }
-
-SIMPSON_REGISTER_TYPE(Point3D<float>)  // registering template specialization with alias name
-template<typename TCoord>
-std::string Point3D<TCoord>::typeName() const { return AutoTypeNames<Point3D<TCoord>>::name; }
+SIMPSON_REGISTER_TYPE(Point3D<float>) // registering template specialization with alias name
+template <typename TCoord>
+std::string Point3D<TCoord>::typeName() const
+{
+    return AutoTypeNames<Point3D<TCoord> >::name;
+}
 
 int main(int argc, char *argv[])
 {
+    using Point2DFloat = Point2D<float>;
+    using Point3DFloat = Point3D<float>;
     Point2DFloat p2d;
     p2d.x = 1.0f;
     p2d.y = 2.0f;

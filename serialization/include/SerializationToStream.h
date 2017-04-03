@@ -7,14 +7,12 @@
 #include "StorageWriteStream.h"
 
 /// Contains all the functionality provided by the library.
-namespace simpson {
+namespace simpson
+{
 
-/// Serializer able to serialize to ostream
-using StreamSerializer = Serializer<StorageWriteStream>;
-/// Deserializer able to deserialize from istream
-using StreamDeserializer = Serializer<StorageReadStream>;
+/// Serialize object to ostream
+std::ostream& operator<<(std::ostream& outStream, simpson::ISerializable& obj);
+/// Deserialize object from istream
+std::istream& operator>>(std::istream& inStream, simpson::ISerializable* obj);
 
 } // simpson
-
-std::ostream& operator<<(std::ostream& outStream, simpson::ISerializable& obj);
-std::istream& operator>>(std::istream& inStream, simpson::ISerializable* obj);

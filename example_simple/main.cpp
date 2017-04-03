@@ -8,7 +8,7 @@
 
 using namespace simpson;
 
-struct Point2D : ISerializable
+struct Point2D final : ISerializable
 {
     float x;
     float y;
