@@ -20,11 +20,11 @@ protected:
     }
 
 private:
-    virtual std::string typeName() const override;
+    virtual std::string getSerializableName() const override;
 };
 SIMPSON_REGISTER_TYPE(Point2D<float>)
 template <typename TCoord>
-std::string Point2D<TCoord>::typeName() const
+std::string Point2D<TCoord>::getSerializableName() const
 {
     return SIMPSON_REGISTERED_TYPE_NAME(Point2D<TCoord>);
 }
@@ -41,11 +41,11 @@ private:
         Point2D<TCoord>::serialize(storage);
         storage | z;
     }
-    virtual std::string typeName() const override;
+    virtual std::string getSerializableName() const override;
 };
 SIMPSON_REGISTER_TYPE(Point3D<float>)
 template <typename TCoord>
-std::string Point3D<TCoord>::typeName() const
+std::string Point3D<TCoord>::getSerializableName() const
 {
     return SIMPSON_REGISTERED_TYPE_NAME(Point3D<TCoord>);
 }

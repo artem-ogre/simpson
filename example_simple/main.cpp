@@ -12,15 +12,15 @@ struct Point2D final : simpson::ISerializable
     float y;
 
 private:
-     // ISerializable interface
+    // ISerializable interface
     virtual void serialize(simpson::IStorage &storage) override
     {
         storage | x | y;
     }
-    std::string typeName() const override;
+    std::string getSerializableName() const override;
 };
 SIMPSON_REGISTER_TYPE_WITH_NAME(Point2D, "point_2d")
-std::string Point2D::typeName() const
+std::string Point2D::getSerializableName() const
 {
     return SIMPSON_REGISTERED_TYPE_NAME(Point2D);
 }

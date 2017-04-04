@@ -9,7 +9,7 @@ using namespace SerializationUtilities;
 
 void simpson::serializeToStorage(ISerializable *obj, IStorage &storage)
 {
-    std::string typeName = obj->typeName();
+    std::string typeName = obj->getSerializableName();
     storage | typeName;
     obj->serialize(storage);
 }

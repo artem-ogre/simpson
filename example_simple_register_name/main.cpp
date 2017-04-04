@@ -17,11 +17,11 @@ private:
     {
         storage | x | y;
     }
-    virtual std::string typeName() const override;
+    virtual std::string getSerializableName() const override;
 };
 
 SIMPSON_REGISTER_TYPE(Point2D)
-std::string Point2D::typeName() const
+std::string Point2D::getSerializableName() const
 {
     return SIMPSON_REGISTERED_TYPE_NAME(Point2D);
 }
