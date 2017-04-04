@@ -1,5 +1,5 @@
 #include <Simpson.h>
-#include <SimpsonStreamSerialization.h>
+#include <StreamOperators.h>
 
 #include <fstream>
 #include <iostream>

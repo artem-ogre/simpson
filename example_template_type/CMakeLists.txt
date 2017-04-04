@@ -19,4 +19,4 @@ endif(APPLE)
 # Add an executable
 add_executable(example_template_type main.cpp)
 # Link serialization library
-target_link_libraries(example_template_type serialization)
+target_link_libraries(example_template_type simpson)
