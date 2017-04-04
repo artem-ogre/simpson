@@ -5,6 +5,7 @@
 #include "SerializationUtilities.h"
 
 using namespace simpson;
+using namespace SerializationUtilities;
 
 void simpson::serialize(ISerializable *obj, IStorage &storage)
 {
@@ -17,7 +18,7 @@ ISerializable *simpson::deserialize(IStorage &storage)
 {
     std::string typeName;
     storage | typeName;
-    ISerializable *serializable = SerializationUtilities::createByTypeName(typeName);
+    ISerializable *serializable = createByTypeName(typeName);
     serializable->serialize(storage);
     return serializable;
 }

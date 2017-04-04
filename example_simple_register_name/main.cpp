@@ -6,16 +6,14 @@
 #include <iostream>
 #include <string>
 
-using namespace simpson;
-
-struct Point2D final : ISerializable
+struct Point2D final : simpson::ISerializable
 {
     float x;
     float y;
 
 private:
     // ISerializable interface
-    virtual void serialize(IStorage &storage) override
+    virtual void serialize(simpson::IStorage &storage) override
     {
         storage | x | y;
     }
@@ -25,7 +23,7 @@ private:
 SIMPSON_REGISTER_TYPE(Point2D)
 std::string Point2D::typeName() const
 {
-    return AutoTypeNames<Point2D>::name;
+    return SIMPSON_REGISTERED_TYPE_NAME(Point2D);
 }
 
 int main(int argc, char *argv[])

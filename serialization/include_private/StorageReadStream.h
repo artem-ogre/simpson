@@ -29,7 +29,14 @@ private:
     virtual IStorage &operator|(std::string &obj) override;    ///< Read string from istream.
 
 private:
+    template <class T>
+    IStorage &readFromStream(T &&x)
+    {
+        m_inStream >> std::forward<T>(x);
+        return *this;
+    }
+
+private:
     std::istream &m_inStream;
 };
-
 }

@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "SerializationUtilities.h"
+
 // Registers type with its type as with type-as-name
 #define SIMPSON_REGISTER_TYPE(T) SIMPSON_REGISTER_TYPE_WITH_NAME(T, #T)
 
@@ -14,8 +16,8 @@
     SIMPSON_REGISTER_TYPE_NAME(T, typeName)                                                                  \
     namespace                                                                                                \
     {                                                                                                        \
-    static SerializationUtilities::SerializableRegistrar<T>                                                  \
-        SIMPSON_UNIQUE_IDENTIFIER(AutoTypeNames<T>::name);                                                   \
+    static simpson::SerializationUtilities::SerializableRegistrar<T>                                         \
+        SIMPSON_UNIQUE_IDENTIFIER(simpson::AutoTypeNames<T>::name);                                          \
     }
 
 // Attaches line-number to fixed identifier
@@ -33,6 +35,9 @@
         static constexpr const char* name = typeName;                                                        \
     };                                                                                                       \
     }
+
+// Name of type that is already registered
+#define SIMPSON_REGISTERED_TYPE_NAME(T) simpson::AutoTypeNames<T>::name
 
 namespace simpson
 {

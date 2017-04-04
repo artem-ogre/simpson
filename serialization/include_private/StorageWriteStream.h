@@ -29,7 +29,14 @@ private:
     virtual IStorage &operator|(std::string &obj) override;    ///< Write long double to ostream.
 
 private:
+    template <class T>
+    IStorage &writeToStream(T &&x)
+    {
+        m_outStream << std::endl << std::forward<T>(x);
+        return *this;
+    }
+
+private:
     std::ostream &m_outStream;
 };
-
 }

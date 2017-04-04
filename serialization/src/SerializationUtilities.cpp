@@ -4,21 +4,20 @@
 #include <map>
 
 using namespace simpson;
+using namespace SerializationUtilities;
 
 namespace
 {
-
 const std::runtime_error notRegistered("The class identificator is not registered in the map");
 const std::runtime_error alreadyRegistered("The class identificator is already registered in the map");
 
-using FactoryFunctionMap = std::map<std::string, SerializationUtilities::SerializableFactoryFunction>;
+using FactoryFunctionMap = std::map<std::string, SerializableFactoryFunction>;
 FactoryFunctionMap &factoryFunctionMap()
 {
     static FactoryFunctionMap _factoryFunctionMap;
     return _factoryFunctionMap;
 }
-
-} // namespace
+}
 
 void SerializationUtilities::registerSerializableType(
     const std::string &typeName,
