@@ -51,5 +51,5 @@ struct SerializableRegistrar
     }
 };
 
-} // SerializationUtilities
+}
 }
