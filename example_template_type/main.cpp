@@ -1,6 +1,5 @@
-// serialization
 #include <Simpson.h>
-#include <StreamSerialization.h>
+#include <SimpsonStreamSerialization.h>
 
 #include <fstream>
 #include <iostream>
@@ -13,7 +12,7 @@ struct Point2D : simpson::ISerializable
     TCoord y;
 
 protected:
-    // ISerializable interface
+    // simpson::ISerializable interface
     virtual void serialize(simpson::IStorage &storage) override
     {
         storage | x | y;
@@ -35,7 +34,7 @@ struct Point3D final : Point2D<TCoord>
     TCoord z;
 
 private:
-    // ISerializable interface
+    // simpson::ISerializable interface
     virtual void serialize(simpson::IStorage &storage) override
     {
         Point2D<TCoord>::serialize(storage);

@@ -1,6 +1,5 @@
-// serialization
 #include <Simpson.h>
-#include <StreamSerialization.h>
+#include <SimpsonStreamSerialization.h>
 
 #include <fstream>
 #include <iostream>
@@ -12,7 +11,7 @@ struct Point2D final : simpson::ISerializable
     float y;
 
 private:
-    // ISerializable interface
+    // simpson::ISerializable interface
     virtual void serialize(simpson::IStorage &storage) override
     {
         storage | x | y;
