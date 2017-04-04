@@ -16,7 +16,7 @@
     SIMPSON_REGISTER_TYPE_NAME(T, typeName)                                                                  \
     namespace                                                                                                \
     {                                                                                                        \
-    static simpson::SerializationUtilities::SerializableRegistrar<T>                                         \
+    static simpson::utilities::SerializableRegistrar<T>                                         \
         SIMPSON_UNIQUE_IDENTIFIER(simpson::AutoTypeNames<T>::name);                                          \
     }
 

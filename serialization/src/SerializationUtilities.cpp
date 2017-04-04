@@ -4,7 +4,7 @@
 #include <map>
 
 using namespace simpson;
-using namespace SerializationUtilities;
+using namespace utilities;
 
 namespace
 {
@@ -19,7 +19,7 @@ FactoryFunctionMap &factoryFunctionMap()
 }
 }
 
-void SerializationUtilities::registerSerializableType(
+void utilities::registerSerializableType(
     const std::string &typeName,
     SerializableFactoryFunction factoryFunction)
 {
@@ -29,7 +29,7 @@ void SerializationUtilities::registerSerializableType(
     factoryFunctionMap()[typeName] = factoryFunction;
 }
 
-ISerializable *SerializationUtilities::createByTypeName(const std::string &typeName)
+ISerializable *utilities::createByTypeName(const std::string &typeName)
 {
     auto search = factoryFunctionMap().find(typeName);
     if(search == factoryFunctionMap().end())

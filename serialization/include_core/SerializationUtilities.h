@@ -10,7 +10,7 @@ namespace simpson
 
 struct ISerializable;
 
-namespace SerializationUtilities
+namespace utilities
 {
 
 using SerializableFactoryFunction = ISerializable* (*)();
