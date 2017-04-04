@@ -7,14 +7,14 @@
 using namespace simpson;
 using namespace SerializationUtilities;
 
-void simpson::serialize(ISerializable *obj, IStorage &storage)
+void simpson::serializeToStorage(ISerializable *obj, IStorage &storage)
 {
     std::string typeName = obj->typeName();
     storage | typeName;
     obj->serialize(storage);
 }
 
-ISerializable *simpson::deserialize(IStorage &storage)
+ISerializable *simpson::deserializeFromStorage(IStorage &storage)
 {
     std::string typeName;
     storage | typeName;
