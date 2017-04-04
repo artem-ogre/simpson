@@ -8,11 +8,11 @@ namespace simpson
 {
 
 /// Implementation of storage that writes serialized data to ostream.
-struct StorageWriteStream final : IStorage
+struct StreamWriteStorage final : IStorage
 {
     /// \brief Constructor.
     /// \param outStream ostream that the storage uses.
-    explicit StorageWriteStream(std::ostream &outStream);
+    explicit StreamWriteStorage(std::ostream &outStream);
 
 private:
     // IStorageIn interface

@@ -1,7 +1,7 @@
 #include "SimpsonStreamSerialization.h"
 
-#include "StorageReadStream.h"
-#include "StorageWriteStream.h"
+#include "StreamReadStorage.h"
+#include "StreamWriteStorage.h"
 #include "Serialize.h"
 
 #include <memory>
@@ -11,14 +11,14 @@ using namespace serialize;
 
 std::ostream& simpson::operator<<(std::ostream& outStream, ISerializable& obj)
 {
-    StorageWriteStream storage(outStream);
+    StreamWriteStorage storage(outStream);
     serializeToStorage(&obj, storage);
     return outStream;
 }
 
 std::istream& simpson::operator>>(std::istream& inStream, ISerializable* obj)
 {
-    StorageReadStream storage(inStream);
+    StreamReadStorage storage(inStream);
     obj = deserializeFromStorage(storage);
     return inStream;
 }
