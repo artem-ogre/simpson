@@ -1,5 +1,7 @@
 /bin
 /build-shapes_serialization-Desktop_Qt_5_7_0_GCC_6_64bit-Debug
 /build-shapes_serialization-Desktop_Qt_5_7_0_GCC_6_64bit-Default
-/serialization/doxygen
+/simpson/doxygen
 CMakeLists.txt.user
+
+shapes_serialization.7z
