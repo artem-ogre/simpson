@@ -8,9 +8,11 @@
 
 namespace simpson
 {
-
 struct IStorage;
+}
 
+namespace simpson
+{
 ///  Interface for the serializable type.
 struct ISerializable : PolymorphicBaseClass
 {

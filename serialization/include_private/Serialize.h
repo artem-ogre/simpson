@@ -2,10 +2,12 @@
 
 namespace simpson
 {
-
 struct ISerializable;
 struct IStorage;
+}
 
+namespace simpson
+{
 namespace serialize
 {
 /// \brief Serializes a provided serializable object.

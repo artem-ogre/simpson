@@ -7,12 +7,15 @@
 
 namespace simpson
 {
-
 struct ISerializable;
+}
 
+namespace simpson
+{
 namespace utilities
 {
 
+/// Factory function creating serializable
 using SerializableFactoryFunction = ISerializable* (*)();
 
 /// Creates a concrete serializable type provided as a template parameter
