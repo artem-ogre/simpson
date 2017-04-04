@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "SerializationUtilities.h"
+#include "SimpsonUtilities.h"
 
 // Registers type with its type as with type-as-name
 #define SIMPSON_REGISTER_TYPE(T) SIMPSON_REGISTER_TYPE_WITH_NAME(T, #T)

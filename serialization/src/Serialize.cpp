@@ -2,7 +2,7 @@
 
 #include "ISerializable.h"
 #include "IStorage.h"
-#include "SerializationUtilities.h"
+#include "SimpsonUtilities.h"
 
 using namespace simpson;
 using namespace utilities;
