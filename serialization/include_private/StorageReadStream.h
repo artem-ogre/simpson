@@ -32,4 +32,4 @@ private:
     std::istream &m_inStream;
 };
 
-} // simpson
+}

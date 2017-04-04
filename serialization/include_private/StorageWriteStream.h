@@ -32,4 +32,4 @@ private:
     std::ostream &m_outStream;
 };
 
-} // simpson
+}

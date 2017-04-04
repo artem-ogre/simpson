@@ -5,17 +5,22 @@
 
 #include <string>
 
-namespace simpson {
+namespace simpson
+{
 
 struct ISerializable;
 
-namespace SerializationUtilities {
+namespace SerializationUtilities
+{
 
 using SerializableFactoryFunction = ISerializable* (*)();
 
 /// Creates a concrete serializable type provided as a template parameter
 template <typename T>
-ISerializable* createSerializable() { return new T; }
+ISerializable* createSerializable()
+{
+    return new T;
+}
 
 /// Registers a new serializable type with its type name and a factory function.
 /// \param typeName name of the serializable type class
@@ -44,4 +49,4 @@ struct SerializableRegistrar
 };
 
 } // SerializationUtilities
-} // simpson
+}

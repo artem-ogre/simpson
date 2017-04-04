@@ -24,6 +24,6 @@ private:
     TStreamStorage m_storage;
 };
 
-} // simpson
+}
 
 #include "StreamSerializer.tpp"

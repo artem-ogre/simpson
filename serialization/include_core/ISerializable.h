@@ -6,7 +6,8 @@
 #include <memory>
 #include <string>
 
-namespace simpson {
+namespace simpson
+{
 
 struct IStorage;
 
@@ -27,4 +28,4 @@ using ISerializableUniquePtr = std::unique_ptr<ISerializable>;
 /// shared_ptr to ISerializable
 using ISerializableSharedPtr = std::shared_ptr<ISerializable>;
 
-} // simpson
+}

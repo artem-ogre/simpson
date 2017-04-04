@@ -5,7 +5,8 @@
 #include <string>
 #include <memory>
 
-namespace simpson {
+namespace simpson
+{
 
 /// Interface for storage used for reading/writing serialized data.
 struct IStorage : PolymorphicBaseClass
@@ -23,4 +24,4 @@ struct IStorage : PolymorphicBaseClass
     virtual IStorage& operator|(std::string& obj) = 0;     ///< Read string from storage.
 };
 
-} // simpson
+}

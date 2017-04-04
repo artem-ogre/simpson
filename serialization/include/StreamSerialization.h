@@ -15,4 +15,4 @@ std::ostream& operator<<(std::ostream& outStream, ISerializable& obj);
 /// Deserialize object from istream
 std::istream& operator>>(std::istream& inStream, ISerializable* obj);
 
-} // simpson
+}

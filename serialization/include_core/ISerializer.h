@@ -2,7 +2,8 @@
 
 #include "PolymorphicBaseClass.h"
 
-namespace simpson {
+namespace simpson
+{
 
 struct ISerializable;
 
@@ -17,4 +18,4 @@ struct ISerializer : PolymorphicBaseClass
     virtual ISerializable* deserialize() = 0;
 };
 
-} // simpson
+}
