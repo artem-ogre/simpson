@@ -1,5 +1,4 @@
-# SIMPSON
-## A <b>Sim</b>ple <b>P</b>olymorphic <b>S</b>erializati<b>on</b> Library
+# SIMPSON: A <b>Sim</b>ple <b>P</b>olymorphic <b>S</b>erializati<b>on</b> Library
 
 ## Overview
 SIMPSON's goal is to provide **polymorphic serialization** in C++ with simple and clean code, that can be easily understood. It is written using **C++14**. SIMPSON is a small hobby project and is not meant to compete with industy-strength libraries as boost::serialization or cereal. Its functionality is rather limited.
