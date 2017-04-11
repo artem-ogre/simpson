@@ -19,7 +19,7 @@ This code will result in `a == b`.
 ## What are SIMPSON's strong points?
 - Minimalistic
 - Simple
-- Does not require RTTI
+- Does not require run-time type information ([RTTI](https://en.wikipedia.org/wiki/Run-time_type_information))
 - Works with template classes
 
 ## How about a simple example?
